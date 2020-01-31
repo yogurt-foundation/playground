@@ -12,16 +12,20 @@ CodeMirror.overlayParser = function(base, overlay, combine) {
       return {
         base: CodeMirror.startState(base),
         overlay: CodeMirror.startState(overlay),
-        basePos: 0, baseCur: null,
-        overlayPos: 0, overlayCur: null
+        basePos: 0,
+        baseCur: null,
+        overlayPos: 0,
+        overlayCur: null
       };
     },
     copyState: function(state) {
       return {
         base: CodeMirror.copyState(base, state.base),
         overlay: CodeMirror.copyState(overlay, state.overlay),
-        basePos: state.basePos, baseCur: null,
-        overlayPos: state.overlayPos, overlayCur: null
+        basePos: state.basePos,
+        baseCur: null,
+        overlayPos: state.overlayPos,
+        overlayCur: null
       };
     },
 
@@ -42,7 +46,7 @@ CodeMirror.overlayParser = function(base, overlay, combine) {
       if (state.baseCur != null && combine) return state.baseCur + " " + state.overlayCur;
       else return state.overlayCur;
     },
-    
+
     indent: base.indent && function(state, textAfter) {
       return base.indent(state.base, textAfter);
     },

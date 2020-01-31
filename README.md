@@ -1,52 +1,43 @@
-<p align="center">
-  <img src="build/icons/128x128.png" width="128px" height="128px"/>
-  <br>
-  <b>CodePad</b><br>
-  <i>An Offline Front-End Development Playground</i><br><br>
-  <a href="https://github.com/sindresorhus/xo">
-    <img src="https://img.shields.io/badge/code_style-xo-blue.svg?style=flat-square" />
-  </a>
-  <a href="https://raw.githubusercontent.com/thecodepad/codepad/master/LICENSE"> 
-    <img src="https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square" />
-  </a>
-  <br><br>
+# yogurt-playground
+
+A frontend development tool for testing and prototyping with [Yogurt](https://github.com/loouislow81/yogurt-foundation/tree/2.x.x) toolkit.
+
+**(Work in progress!)**
+
+<p align="left">
+  <img src="logo@ori.png" width="100">
 </p>
 
->  **NEW: Save your snippets!**
+<p align="left">
+  <img src="screenshot_01.png" width="900">
+</p>
 
-__CodePad__ instantly previews your code so you don't have to run back and forth between an editor and a browser. You can also add your favorite icon fonts, libraries and frameworks such as Font Awesome, anime.js and Bootstrap with a click. And the best of it all, everything works offline.
+---
 
-## Screenshot 🖼️
+## _download
 
-[<img alt='CodePad' src="https://raw.githubusercontent.com/Jay9596/CodePad/master/CodePad.png">](https://thecodepad.github.io)
+available binaries for Linux, Windows is [here](https://github.com/loouislow81/yogurt-playground/releases/tag/v0.1.2-beta).
 
+---
 
-## Installation 💻
+MIT License
 
-Download CodePad for Windows [here](https://github.com/Jay9596/CodePad/releases/download/v1.1-beta/CodePad.rar). Extract and run CodePad.exe. Coming Soon for Ubuntu and macOS.
+Copyright (c) 2019 Loouis Low
 
-## Run From Source 🎩
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-You can run the app via command line by following these steps:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-```
-$ git clone https://github.com/thecodepad/codepad.git
-$ cd codepad
-$ npm install
-$ npm start
-```
-
-> Please note that 'Save' will not work here.
-
-## Dev To-Do List 🌈
-
-- [x] Save the code snippet
-- [ ] Resizeable editor
-- [ ] Editor themes/appearance settings
-- [ ] Preprocessor support
-- [ ] Import custom libs
-- [ ] View output in fullscreen/browser
-
-## Credits 👨
-
-Designed and developed by: [@apollonian11](https://www.github.com/apollonian11) and [@jay9596](https://www.github.com/jay9596)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

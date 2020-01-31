@@ -1,187 +1,104 @@
-const cheerio = require('cheerio');
-const path = require('path');
-const fs = require('fs');
-
-
 module.exports = {
   fileMenu,
   newFile,
-  handleOpen,
   handleNew,
   handleSave,
-  handleSaveAs,
-};
-let saveFlag, openFlag;
-const getSavePath = () => savePath;
-const setSavePath = (filepath) => {
-  savePath = filepath;
-};
-
+  handleSaveAs
+}
+let saveFlag
+const getSavePath = () => savePath
+const setSavePath = (path) => {
+  savePath = path
+}
 
 function fileMenu() {
-  document.getElementById("open").addEventListener("click", handleOpen);
-  document.getElementById("save").addEventListener("click", handleSave);
-  document.getElementById("save-as").addEventListener("click", handleSaveAs);
-  document.getElementById("new").addEventListener("click", handleNew);
-  document.getElementById("close-window").addEventListener("click", e => {
-    window.close();
-  });
+  document.getElementById('save').addEventListener('click', handleSave)
+  document.getElementById('save-as').addEventListener('click', handleSaveAs)
+  document.getElementById('new').addEventListener('click', handleNew)
+  document.getElementById('close-window').addEventListener('click', function(e) {
+    window.close()
+  })
 }
 
 function handleNew(i) {
   if (false) {
-    newFile();
-    editor[i].setValue("");
-  } else {
-    window.open(path.join("file://", __dirname, "/index.html"));
+    newFile()
+    editor[i].setValue('')
   }
-}
-
-function handleOpen() {
-  const filepath = dialog.showOpenDialog({
-    properties: ["openDirectory"],
-  });
-  if (filepath !== undefined) {
-    saveFlag = true;
-    setSavePath(filepath);
-    readData(filepath);
+  else {
+    window.open(path.join('file://', __dirname, '/index.html'))
   }
-}
-
-function readData(openPath) {
-  fs.readFile(openPath+"/index.html", 'utf-8', function(err, data) {
-    if (err) throw err;
-
-    const $ = cheerio.load(data);
-    html.setValue($('body').html().replace('<script src="script.js"></script>', ''));
-  });
-
-  fs.readFile(openPath+"/style.css", 'utf-8', function(err, data) {
-    if (err) throw err;
-    css.setValue(data);
-  });
-  
-  fs.readFile(openPath+"/script.js", 'utf-8', function(err, data) {
-    js.setValue(data);
-  });
 }
 
 function handleSaveAs() {
-  const filepath = dialog.showOpenDialog({
-    properties: ["openDirectory"],
-  });
-  if (filepath !== undefined) {
-    saveFlag = true;
-    setSavePath(filepath);
-    handleSave();
+  var path = dialog.showOpenDialog({
+    properties: ['openDirectory']
+  })
+  if (path !== undefined) {
+    saveFlag = true
+    setSavePath(path)
+    handleSave()
   }
 }
 
 function handleSave() {
   if (saveFlag === true) {
-    const filepath = getSavePath();
-    const htmlString =
-      "<html>\n" +
-      "<head>\n" +
-      "<title>Saved from CodePade</title>\n" +
-      CSSMenu.getCssLibs() +
-      '\n<link type="text/css" rel="stylesheet" href="style.css"/>\n' +
-      "</head>\n" +
-      "<body>\n" +
-      html.getValue() +
-      JSMenu.getJsLibs() +
-      '\n<script src="script.js">' +
-      "</script>\n" +
-      "</body>\n" +
-      "</html>";
-    fs.writeFile(path.join(filepath + '/index.html'), htmlString, err => {
+    var path = getSavePath()
+    // console.log('save path:  ' + path)
+    var htmlString = '<html>\n' + '<head>\n' + '<title>Yogurt Playground</title>\n' + CSSMenu.getCssLibs() + '\n<link type="text/css" rel="stylesheet" href="style.css"/>\n' + '</head>\n' + '<body>\n' + html.getValue() + JSMenu.getJsLibs() + '\n<script src="script.js">' + '</script>\n' + '</body>\n' + '</html>'
+    // Write HTML
+    fs.writeFile(path + '/yogurt_prototype_component.html', htmlString, (err) => {
       if (err) {
-        console.error(err);
+        console.error(err)
       }
-    });
-    fs.writeFile(path.join(filepath + '/style.css'), css.getValue(), err => {
-      if (err) {
-        console.error(err);
-      }
-    });
-    fs.writeFile(path.join(filepath + '/script.js'), js.getValue(), err => {
-      if (err) {
-        console.error(err);
-      }
-    });
-    for (let j = 0; j < styFlags.length; j++) {
+      // console.log('success HTML')
+    })
+    // Write CSS
+    //fs.writeFile(path + '/style.css', css.getValue(), (err) => {
+    //  if (err) {
+    //    console.error(err)
+    //  }
+    // console.log('success CSS')
+    //})
+    // Write JS
+    //fs.writeFile(path + '/script.js', js.getValue(), (err) => {
+    //  if (err) {
+    //    console.error(err)
+    //  }
+    // console.log('success JS')
+    //})
+    for (var j = 0; j < styFlags.length; j++) {
       if (styFlags[j] === 1) {
-        fs
-          .createReadStream("resources/app.asar/app/lib/" + cssLib[j][0])
-          .pipe(fs.createWriteStream(path.join(filepath + "/" + cssLib[j][0])));
+        fs.createReadStream('resources/app.asar/app/lib/' + cssLib[j][0]).pipe(fs.createWriteStream(path + '/' + cssLib[j][0]))
         if (j === 1) {
-          fs
-            .createReadStream(
-              "resources/app.asar/app/lib/glyphicons-halflings-regular.eot",
-          )
-            .pipe(
-              fs.createWriteStream(path.join(filepath + "/glyphicons-halflings-regular.eot")),
-          );
-          fs
-            .createReadStream(
-              "resources/app.asar/app/lib/glyphicons-halflings-regular.ttf",
-          )
-            .pipe(
-              fs.createWriteStream(path.join(filepath + "/glyphicons-halflings-regular.tff")),
-          );
-          fs
-            .createReadStream(
-              "resources/app.asar/app/lib/glyphicons-halflings-regular.woff",
-          )
-            .pipe(
-              fs.createWriteStream(path.join(filepath + "/glyphicons-halflings-regular.woff")),
-          );
-          fs
-            .createReadStream(
-              "resources/app.asar/app/lib/glyphicons-halflings-regular.woff2",
-          )
-            .pipe(
-              fs.createWriteStream(
-                path.join(filepath + "/glyphicons-halflings-regular.woff2"),
-              ),
-          );
+          fs.createReadStream('resources/app.asar/app/lib/glyphicons-halflings-regular.eot').pipe(fs.createWriteStream(path + '/glyphicons-halflings-regular.eot'))
+          fs.createReadStream('resources/app.asar/app/lib/glyphicons-halflings-regular.ttf').pipe(fs.createWriteStream(path + '/glyphicons-halflings-regular.tff'))
+          fs.createReadStream('resources/app.asar/app/lib/glyphicons-halflings-regular.woff').pipe(fs.createWriteStream(path + '/glyphicons-halflings-regular.woff'))
+          fs.createReadStream('resources/app.asar/app/lib/glyphicons-halflings-regular.woff2').pipe(fs.createWriteStream(path + '/glyphicons-halflings-regular.woff2'))
         }
         if (j === 2) {
-          fs
-            .createReadStream(
-              "resources/app.asar/app/lib/fontawesome-webfont.ttf",
-          )
-            .pipe(fs.createWriteStream(path.join(filepath + "/fontawesome-webfont.ttf")));
-          fs
-            .createReadStream(
-              "resources/app.asar/app/lib/fontawesome-webfont.woff",
-          )
-            .pipe(fs.createWriteStream(path.join(filepath + "/fontawesome-webfont.woff")));
-          fs
-            .createReadStream(
-              "resources/app.asar/app/lib/fontawesome-webfont.woff2",
-          )
-            .pipe(fs.createWriteStream(path.join(filepath + "/fontawesome-webfont.woff2")));
+          fs.createReadStream('resources/app.asar/app/lib/fontawesome-webfont.ttf').pipe(fs.createWriteStream(path + '/fontawesome-webfont.ttf'))
+          fs.createReadStream('resources/app.asar/app/lib/fontawesome-webfont.woff').pipe(fs.createWriteStream(path + '/fontawesome-webfont.woff'))
+          fs.createReadStream('resources/app.asar/app/lib/fontawesome-webfont.woff2').pipe(fs.createWriteStream(path + '/fontawesome-webfont.woff2'))
         }
       }
     }
-    for (let i = 0; i < scrFlags.length; i++) {
+    for (var i = 0; i < scrFlags.length; i++) {
       if (scrFlags[i] === 1) {
-        fs
-          .createReadStream("resources/app.asar/app/lib/" + jsLib[i][0])
-          .pipe(fs.createWriteStream(path.join(filepath + "/" + jsLib[i][0])));
+        fs.createReadStream('resources/app.asar/app/lib/' + jsLib[i][0]).pipe(fs.createWriteStream(path + '/' + jsLib[i][0]))
       }
     }
     dialog.showMessageBox({
-      message: "Saved to " + path.join(filepath + '/'),
-      buttons: ["OK"],
-    });
-  } else {
-    handleSaveAs();
+      message: 'Saved to ' + path + '/',
+      buttons: ['OK']
+    })
+  }
+  else {
+    handleSaveAs()
   }
 }
 
 function newFile() {
-  fileEntry = null;
-  hasWriteAccess = false;
+  fileEntry = null
+  hasWriteAccess = false
 }

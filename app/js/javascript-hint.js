@@ -1,8 +1,8 @@
-(function () {
+(function() {
   function forEach(arr, f) {
     for (var i = 0, e = arr.length; i < e; ++i) f(arr[i]);
   }
-  
+
   function arrayContains(arr, item) {
     if (!Array.prototype.indexOf) {
       var i = arr.length;
@@ -18,49 +18,63 @@
 
   function scriptHint(editor, keywords, getToken) {
     // Find the token at the cursor
-    var cur = editor.getCursor(), token = getToken(editor, cur), tprop = token;
+    var cur = editor.getCursor(),
+      token = getToken(editor, cur),
+      tprop = token;
     // If it's not a 'word-style' token, ignore the token.
-		if (!/^[\w$_]*$/.test(token.string)) {
-      token = tprop = {start: cur.ch, end: cur.ch, string: "", state: token.state,
-                       className: token.string == "." ? "property" : null};
+    if (!/^[\w$_]*$/.test(token.string)) {
+      token = tprop = {
+        start: cur.ch,
+        end: cur.ch,
+        string: "",
+        state: token.state,
+        className: token.string == "." ? "property" : null
+      };
     }
     // If it is a property, find out what it is a property of.
     while (tprop.className == "property") {
-      tprop = getToken(editor, {line: cur.line, ch: tprop.start});
+      tprop = getToken(editor, { line: cur.line, ch: tprop.start });
       if (tprop.string != ".") return;
-      tprop = getToken(editor, {line: cur.line, ch: tprop.start});
+      tprop = getToken(editor, { line: cur.line, ch: tprop.start });
       if (tprop.string == ')') {
         var level = 1;
         do {
-          tprop = getToken(editor, {line: cur.line, ch: tprop.start});
+          tprop = getToken(editor, { line: cur.line, ch: tprop.start });
           switch (tprop.string) {
-          case ')': level++; break;
-          case '(': level--; break;
-          default: break;
+            case ')':
+              level++;
+              break;
+            case '(':
+              level--;
+              break;
+            default:
+              break;
           }
         } while (level > 0)
-        tprop = getToken(editor, {line: cur.line, ch: tprop.start});
-				if (tprop.className == 'variable')
-					tprop.className = 'function';
-				else return; // no clue
+        tprop = getToken(editor, { line: cur.line, ch: tprop.start });
+        if (tprop.className == 'variable')
+          tprop.className = 'function';
+        else return; // no clue
       }
       if (!context) var context = [];
       context.push(tprop);
     }
-    return {list: getCompletions(token, context, keywords),
-            from: {line: cur.line, ch: token.start},
-            to: {line: cur.line, ch: token.end}};
+    return {
+      list: getCompletions(token, context, keywords),
+      from: { line: cur.line, ch: token.start },
+      to: { line: cur.line, ch: token.end }
+    };
   }
 
   CodeMirror.javascriptHint = function(editor) {
     return scriptHint(editor, javascriptKeywords,
-                      function (e, cur) {return e.getTokenAt(cur);});
+      function(e, cur) { return e.getTokenAt(cur); });
   }
 
   function getCoffeeScriptToken(editor, cur) {
-  // This getToken, it is for coffeescript, imitates the behavior of
-  // getTokenAt method in javascript.js, that is, returning "property"
-  // type and treat "." as indepenent token.
+    // This getToken, it is for coffeescript, imitates the behavior of
+    // getTokenAt method in javascript.js, that is, returning "property"
+    // type and treat "." as indepenent token.
     var token = editor.getTokenAt(cur);
     if (cur.ch == token.start + 1 && token.string.charAt(0) == '.') {
       token.end = token.start;
@@ -80,20 +94,23 @@
   }
 
   var stringProps = ("charAt charCodeAt indexOf lastIndexOf substring substr slice trim trimLeft trimRight " +
-                     "toUpperCase toLowerCase split concat match replace search").split(" ");
+    "toUpperCase toLowerCase split concat match replace search").split(" ");
   var arrayProps = ("length concat join splice push pop shift unshift slice reverse sort indexOf " +
-                    "lastIndexOf every some filter forEach map reduce reduceRight ").split(" ");
+    "lastIndexOf every some filter forEach map reduce reduceRight ").split(" ");
   var funcProps = "prototype apply call bind".split(" ");
   var javascriptKeywords = ("break case catch continue debugger default delete do else false finally for function " +
-                  "if in instanceof new null return switch throw true try typeof var void while with").split(" ");
+    "if in instanceof new null return switch throw true try typeof var void while with").split(" ");
   var coffeescriptKeywords = ("and break catch class continue delete do else extends false finally for " +
-                  "if in instanceof isnt new no not null of off on or return switch then throw true try typeof until void while with yes").split(" ");
+    "if in instanceof isnt new no not null of off on or return switch then throw true try typeof until void while with yes").split(" ");
 
   function getCompletions(token, context, keywords) {
-    var found = [], start = token.string;
+    var found = [],
+      start = token.string;
+
     function maybeAdd(str) {
       if (str.indexOf(start) == 0 && !arrayContains(found, str)) found.push(str);
     }
+
     function gatherCompletions(obj) {
       if (typeof obj == "string") forEach(stringProps, maybeAdd);
       else if (obj instanceof Array) forEach(arrayProps, maybeAdd);
@@ -104,7 +121,8 @@
     if (context) {
       // If this is a property, see if it belongs to some object we can
       // find in the current environment.
-      var obj = context.pop(), base;
+      var obj = context.pop(),
+        base;
       if (obj.className == "variable")
         base = window[obj.string];
       else if (obj.className == "string")
@@ -113,7 +131,7 @@
         base = 1;
       else if (obj.className == "function") {
         if (window.jQuery != null && (obj.string == '$' || obj.string == 'jQuery') &&
-            (typeof window.jQuery == 'function'))
+          (typeof window.jQuery == 'function'))
           base = window.jQuery();
         else if (window._ != null && (obj.string == '_') && (typeof window._ == 'function'))
           base = window._();

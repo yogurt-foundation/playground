@@ -5,11 +5,12 @@
     var result = getHints(editor);
     if (!result || !result.list.length) return;
     var completions = result.list;
+
     function insert(str) {
       editor.replaceRange(str, result.from, result.to);
     }
     // When there is only one completion, use it directly.
-    if (completions.length == 1) {insert(completions[0]); return true;}
+    if (completions.length == 1) { insert(completions[0]); return true; }
 
     // Build the select widget
     var complete = document.createElement("div");
@@ -31,42 +32,52 @@
     document.body.appendChild(complete);
     // If we're at the edge of the screen, then we want the menu to appear on the left of the cursor.
     var winW = window.innerWidth || Math.max(document.body.offsetWidth, document.documentElement.offsetWidth);
-    if(winW - pos.x < sel.clientWidth)
+    if (winW - pos.x < sel.clientWidth)
       complete.style.left = (pos.x - sel.clientWidth) + "px";
     // Hack to hide the scrollbar.
     if (completions.length <= 10)
       complete.style.width = (sel.clientWidth - 1) + "px";
 
     var done = false;
+
     function close() {
       if (done) return;
       done = true;
       complete.parentNode.removeChild(complete);
     }
+
     function pick() {
       insert(completions[sel.selectedIndex]);
       close();
-      setTimeout(function(){editor.focus();}, 50);
+      setTimeout(function() { editor.focus(); }, 50);
     }
     CodeMirror.connect(sel, "blur", close);
     CodeMirror.connect(sel, "keydown", function(event) {
       var code = event.keyCode;
       // Enter
-      if (code == 13) {CodeMirror.e_stop(event); pick();}
+      if (code == 13) {
+        CodeMirror.e_stop(event);
+        pick();
+      }
       // Escape
-      else if (code == 27) {CodeMirror.e_stop(event); close(); editor.focus();}
+      else if (code == 27) {
+        CodeMirror.e_stop(event);
+        close();
+        editor.focus();
+      }
       else if (code != 38 && code != 40) {
-        close(); editor.focus();
+        close();
+        editor.focus();
         // Pass the event to the CodeMirror instance so that it can handle things like backspace properly.
         editor.triggerOnKeyDown(event);
-        setTimeout(function(){CodeMirror.simpleHint(editor, getHints);}, 50);
+        setTimeout(function() { CodeMirror.simpleHint(editor, getHints); }, 50);
       }
     });
     CodeMirror.connect(sel, "dblclick", pick);
 
     sel.focus();
     // Opera sometimes ignores focusing a freshly created node
-    if (window.opera) setTimeout(function(){if (!done) sel.focus();}, 100);
+    if (window.opera) setTimeout(function() { if (!done) sel.focus(); }, 100);
     return true;
   };
 })();

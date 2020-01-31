@@ -1,23 +1,26 @@
 {
-  "name": "codepad",
+  "name": "yogurt-playground",
   "version": "0.1.1",
-  "description": "An offline front-end development playground",
-  "productName": "CodePad",
+  "description": "A development playground for testing and prototyping with Yogurt",
+  "productName": "yogurt-playground",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thecodepad/codepad"
+    "url": "https://github.com/loouislow81/yogurt-playground"
   },
   "keywords": [
-    "electron",
     "front-end",
-    "editor"
+    "playground",
+    "mockup",
+    "testing",
+    "ui"
   ],
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.6.1"
+    "electron": "^1.6.1",
+    "standard": "^9.0.0"
   }
 }

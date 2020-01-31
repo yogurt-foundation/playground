@@ -26,11 +26,14 @@
       if (e.which != 1) return;
       CodeMirror.e_preventDefault(e);
       var axis = self.orientation == "horizontal" ? "pageX" : "pageY";
-      var start = e[axis], startpos = self.pos;
+      var start = e[axis],
+        startpos = self.pos;
+
       function done() {
         CodeMirror.off(document, "mousemove", move);
         CodeMirror.off(document, "mouseup", done);
       }
+
       function move(e) {
         if (e.which != 1) return done();
         self.moveTo(startpos + (e[axis] - start) * (self.total / self.size));
@@ -41,7 +44,8 @@
 
     CodeMirror.on(this.node, "click", function(e) {
       CodeMirror.e_preventDefault(e);
-      var innerBox = self.inner.getBoundingClientRect(), where;
+      var innerBox = self.inner.getBoundingClientRect(),
+        where;
       if (self.orientation == "horizontal")
         where = e.clientX < innerBox.left ? -1 : e.clientX > innerBox.right ? 1 : 0;
       else
@@ -116,17 +120,17 @@
 
     if (needsV) {
       this.vert.update(measure.scrollHeight, measure.clientHeight,
-                       measure.viewHeight - (needsH ? width : 0));
+        measure.viewHeight - (needsH ? width : 0));
       this.vert.node.style.bottom = needsH ? width + "px" : "0";
     }
     if (needsH) {
       this.horiz.update(measure.scrollWidth, measure.clientWidth,
-                        measure.viewWidth - (needsV ? width : 0) - measure.barLeft);
+        measure.viewWidth - (needsV ? width : 0) - measure.barLeft);
       this.horiz.node.style.right = needsV ? width + "px" : "0";
       this.horiz.node.style.left = measure.barLeft + "px";
     }
 
-    return {right: needsV ? width : 0, bottom: needsH ? width : 0};
+    return { right: needsV ? width : 0, bottom: needsH ? width : 0 };
   };
 
   SimpleScrollbars.prototype.setScrollTop = function(pos) {

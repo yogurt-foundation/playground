@@ -3,7 +3,9 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
   var isNode = callback.nodeType == 1;
   var tabSize = (options && options.tabSize) || CodeMirror.defaults.tabSize;
   if (isNode) {
-    var node = callback, accum = [], col = 0;
+    var node = callback,
+      accum = [],
+      col = 0;
     callback = function(text, style) {
       if (text == "\n") {
         accum.push("<br>");
@@ -18,7 +20,8 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
           escaped += CodeMirror.htmlEscape(text.slice(pos));
           col += text.length - pos;
           break;
-        } else {
+        }
+        else {
           col += idx - pos;
           escaped += CodeMirror.htmlEscape(text.slice(pos, idx));
           var size = tabSize - col % tabSize;
@@ -28,13 +31,14 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
         }
       }
 
-      if (style) 
+      if (style)
         accum.push("<span class=\"cm-" + CodeMirror.htmlEscape(style) + "\">" + escaped + "</span>");
       else
         accum.push(escaped);
     }
   }
-  var lines = CodeMirror.splitLines(string), state = CodeMirror.startState(mode);
+  var lines = CodeMirror.splitLines(string),
+    state = CodeMirror.startState(mode);
   for (var i = 0, e = lines.length; i < e; ++i) {
     if (i) callback("\n");
     var stream = new CodeMirror.StringStream(lines[i]);

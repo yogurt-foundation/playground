@@ -11,7 +11,9 @@
 
   CodeMirror.defineExtension("openDialog", function(template, callback) {
     var dialog = dialogDiv(this, template);
-    var closed = false, me = this;
+    var closed = false,
+      me = this;
+
     function close() {
       if (closed) return;
       closed = true;
@@ -36,7 +38,10 @@
   CodeMirror.defineExtension("openConfirm", function(template, callbacks) {
     var dialog = dialogDiv(this, template);
     var buttons = dialog.getElementsByTagName("button");
-    var closed = false, me = this, blurring = 1;
+    var closed = false,
+      me = this,
+      blurring = 1;
+
     function close() {
       if (closed) return;
       closed = true;
@@ -57,7 +62,7 @@
         --blurring;
         setTimeout(function() { if (blurring <= 0) close(); }, 200);
       });
-      CodeMirror.connect(b, "focus", function() { ++blurring; });
+      CodeMirror.connect(b, "focus", function() {++blurring; });
     }
   });
 })();
