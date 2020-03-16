@@ -10,6 +10,7 @@ Thumbs.db
 
 .vscode
 .package-lock.json
+yarn.lock
 
 logs.txt
 git-rebase-refactor.sh
