@@ -23,8 +23,8 @@ A developer playground for testing and prototyping with Yogurt CSS and Yogurt FX
 
 > Work in progress
 
-<p align="left">
-  <img src="screenshot_01.png" width="900">
+<p align="center">
+  <img src="assets/screenshot_01.png" height="auto" width="auto">
 </p>
 
 ---
