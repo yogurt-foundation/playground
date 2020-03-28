@@ -1,27 +1,27 @@
-# yogurt-playground
-
 <p align="left">
-  <img src="https://badgen.net/github/release/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/releases/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/assets-dl/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/branches/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/forks/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/stars/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/watchers/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/tag/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/commits/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/last-commit/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/contributors/loouislow81/yogurt-playground">
-  <img src="https://badgen.net/github/license/loouislow81/yogurt-playground">
+  <img src="assets/logo512_dark.png" width="100">
 </p>
 
-A frontend development tool for testing and prototyping with [Yogurt](https://github.com/loouislow81/yogurt-foundation/tree/2.x.x) toolkit.
-
-**(Work in progress!)**
+# playground
 
 <p align="left">
-  <img src="logo@ori.png" width="100">
+  <img src="https://badgen.net/github/release/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/releases/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/assets-dl/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/branches/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/forks/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/stars/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/watchers/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/tag/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/commits/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/last-commit/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/contributors/yogurt-foundation/playground">
+  <img src="https://badgen.net/github/license/yogurt-foundation/playground">
 </p>
+
+A developer playground for testing and prototyping with Yogurt CSS and Yogurt FX.
+
+> Work in progress
 
 <p align="left">
   <img src="screenshot_01.png" width="900">
@@ -29,10 +29,27 @@ A frontend development tool for testing and prototyping with [Yogurt](https://gi
 
 ---
 
-## _download
+### _run
 
-available binaries for Linux, Windows is [here](https://github.com/loouislow81/yogurt-playground/releases/tag/v0.1.2-beta).
+```bash
+# using yarn
+$ yarn start
+
+# using npm
+$ npm run start
+```
+
+### _build
+
+```bash
+# build linux app
+$ yarn build:linux
+# build mac app
+$ yarn build:mac
+# build windows app
+$ yarn build:windows
+```
 
 ---
 
-[MIT](https://github.com/loouislow81/yogurt-playground/blob/master/LICENSE)
+[MIT](https://github.com/yogurt-foundation/playground/blob/master/LICENSE)
