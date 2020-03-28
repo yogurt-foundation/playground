@@ -44,8 +44,10 @@ $ npm run start
 ```bash
 # build linux app
 $ yarn build:linux
+
 # build mac app
 $ yarn build:mac
+
 # build windows app
 $ yarn build:windows
 ```
