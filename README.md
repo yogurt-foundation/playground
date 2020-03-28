@@ -24,7 +24,7 @@ A developer playground for testing and prototyping with Yogurt CSS and Yogurt FX
 > Work in progress
 
 <p align="center">
-  <img src="assets/screenshot_01.png" height="auto" width="auto">
+  <img src="assets/screenshot_02.png" height="auto" width="auto">
 </p>
 
 ---
