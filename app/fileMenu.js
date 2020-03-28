@@ -44,29 +44,13 @@ function handleSaveAs() {
 function handleSave() {
   if (saveFlag === true) {
     var path = getSavePath()
-    // console.log('save path:  ' + path)
-    var htmlString = '<html>\n' + '<head>\n' + '<title>Yogurt Playground</title>\n' + CSSMenu.getCssLibs() + '\n<link type="text/css" rel="stylesheet" href="style.css"/>\n' + '</head>\n' + '<body>\n' + html.getValue() + JSMenu.getJsLibs() + '\n<script src="script.js">' + '</script>\n' + '</body>\n' + '</html>'
+    var htmlString = '<!-- Yogurt UI Component -->\n\n' + html.getValue() + JSMenu.getJsLibs()
     // Write HTML
     fs.writeFile(path + '/yogurt_prototype_component.html', htmlString, (err) => {
       if (err) {
         console.error(err)
       }
-      // console.log('success HTML')
     })
-    // Write CSS
-    //fs.writeFile(path + '/style.css', css.getValue(), (err) => {
-    //  if (err) {
-    //    console.error(err)
-    //  }
-    // console.log('success CSS')
-    //})
-    // Write JS
-    //fs.writeFile(path + '/script.js', js.getValue(), (err) => {
-    //  if (err) {
-    //    console.error(err)
-    //  }
-    // console.log('success JS')
-    //})
     for (var j = 0; j < styFlags.length; j++) {
       if (styFlags[j] === 1) {
         fs.createReadStream('resources/app.asar/app/lib/' + cssLib[j][0]).pipe(fs.createWriteStream(path + '/' + cssLib[j][0]))

@@ -39,8 +39,8 @@ a.menu-item:hover {
 
 #menu-items ul a {
   display: block;
-  font-family: 'Segoe UI Semibold', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 12px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell, Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Lucida Grande, Helvetica, Arial, sans-serif;
+  font-size: 14px;
   line-height: 32px;
   outline: none;
   padding: 0 12px;
@@ -130,18 +130,19 @@ li.dropdown {
   opacity: 1
 }
 
-#codepad-center {
+#playground-center {
   position: absolute;
   color: #EAEAEA;
   font-size: 16px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell, Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Lucida Grande, Helvetica, Arial, sans-serif;
   line-height: 33px;
   left: 50%;
+  margin-top: 4px;
   margin-right: -50%;
   transform: translateX(-50%);
 }
 
-#codepad-center::selection {
+#playground-center::selection {
   background: transparent;
 }
 
@@ -174,15 +175,15 @@ li.dropdown {
 }
 
 #max-button {
-  background: linear-gradient(#00D89F, #09E17B);
+  background: linear-gradient(#E2E3E7, #E2E3E7);
 }
 
 #min-button {
-  background: linear-gradient(#FFE066, #F0C808);
+  background: linear-gradient(#E2E3E7, #E2E3E7);
 }
 
 #close-button {
-  background: linear-gradient(#F88734, #FD6A51);
+  background: linear-gradient(#E2E3E7, #E2E3E7);
 }
 
 
@@ -215,11 +216,10 @@ li.dropdown {
 .editor-label {
   background-color: #232831;
   color: #EAEAEA;
-  font-family: 'Segoe UI Semibold', Tahoma, Geneva, Verdana, sans-serif;
-  height: 32px;
-  line-height: 32px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell, Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Lucida Grande, Helvetica, Arial, sans-serif;
+  height: 0px;
+  line-height: 0px;
   text-align: center;
-  /*padding-right: 5px;*/
 }
 
 .editor-focus {
@@ -242,7 +242,6 @@ li.dropdown {
 /* result-viewport: The container holding iframe element */
 
 #result-viewport {
-  /*height: calc(100% - 384px);*/
   height: 100vh;
   border: 0;
   margin: 0;

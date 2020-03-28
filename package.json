@@ -1,27 +1,27 @@
 {
   "name": "yogurt-playground",
   "version": "0.1.2",
-  "description": "A development playground for testing and prototyping with Yogurt",
+  "description": "A developer playground for testing and prototyping with Yogurt CSS and Yogurt FX",
   "productName": "Yogurt Playground",
+  "license": "MIT",
   "main": "./app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yogurt-foundation/playground"
+  },
+  "keywords": [
+    "frontend",
+    "playground",
+    "mockup",
+    "testing",
+    "ide"
+  ],
   "scripts": {
     "start": "electron ./app/",
     "build:linux": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icons/512x512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt",
     "build:mac": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=darwin --arch=x64 --icon=build/icons/512x512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt",
     "build:win": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=win32 --arch=x64 --icon=build/icons/512x512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/loouislow81/yogurt-playground"
-  },
-  "keywords": [
-    "front-end",
-    "playground",
-    "mockup",
-    "testing",
-    "ui"
-  ],
-  "license": "MIT",
   "devDependencies": {
     "asar": "^0.13.0",
     "electron": "^1.6.1",

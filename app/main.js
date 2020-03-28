@@ -22,7 +22,7 @@ app.on('ready', () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     title: 'Yogurt',
-    width: 1024,
+    width: 1280,
     height: 720,
     frame: false,
     minHeight: 600,
