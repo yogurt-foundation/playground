@@ -18,9 +18,9 @@
   ],
   "scripts": {
     "start": "electron ./app/",
-    "build:linux": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icons/512x512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt",
-    "build:mac": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=darwin --arch=x64 --icon=build/icons/512x512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt",
-    "build:win": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=win32 --arch=x64 --icon=build/icons/512x512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt"
+    "build:linux": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/app_icon512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt",
+    "build:mac": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=darwin --arch=x64 --icon=assets/app_icon512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt",
+    "build:win": "electron-packager . Yogurt Playground --app-bundle-id=yogurt --overwrite --asar=true --platform=win32 --arch=x64 --icon=assets/app_icon512.png --prune=true --out=dist --version-string.ProductName=Yogurt Playground --version-string.FileDescription=Testing and prototyping UI with Yogurt"
   },
   "devDependencies": {
     "asar": "^0.13.0",
