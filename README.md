@@ -5,9 +5,9 @@
 # playground
 
 <p align="left">
-  <a href="https://discord.gg/jEaq55" 
+  <a href="https://discord.gg/A62YjNR" 
      target="_blank">
-    <img title="Join the chat at https://discord.gg/jEaq55" 
+    <img title="Join the chat at https://discord.gg/A62YjNR" 
          src="https://img.shields.io/badge/DISCORD-JOIN_CHANNEL_%E2%86%92-7289da.svg?style=flat">
   </a>
   <img src="https://badgen.net/github/release/yogurt-foundation/playground">
