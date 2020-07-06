@@ -26,8 +26,6 @@
 
 A developer playground for testing and prototyping with Yogurt CSS and Yogurt FX.
 
-> Work in progress
-
 <p align="center">
   <img src="assets/screenshot_02.png" height="auto" width="auto">
 </p>
@@ -56,6 +54,10 @@ $ yarn build:mac
 # build windows app
 $ yarn build:windows
 ```
+
+### _binary
+
+[Download the precompiled desktop binary](https://github.com/yogurt-foundation/playground/releases/tag/0.1.2-beta).
 
 ---
 
