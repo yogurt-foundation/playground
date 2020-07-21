@@ -30,6 +30,8 @@ app.on('ready', () => {
     icon: path.join(__dirname, '../build/CB.ico')
   })
 
+  mainWindow.maximize()
+
   // and load the index.html of the app.
   mainWindow.loadURL(path.join('file://', __dirname, '/index.html'))
 
