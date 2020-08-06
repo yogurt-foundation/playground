@@ -79,7 +79,8 @@
         'pre': true,
         'section': true,
         'table': true,
-        'ul': true
+        'ul': true,
+        'y': true
       },
       'rp': { 'rp': true, 'rt': true },
       'rt': { 'rp': true, 'rt': true },

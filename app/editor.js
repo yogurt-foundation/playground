@@ -28,18 +28,10 @@ var scrFlags = [0, 0, 0, 0, 0]
 
 var cssLib = [
   ['yogurt.min.css', "<link rel='stylesheet' type='text/css' href='lib/yogurt.min.css'>"]
-  // ['animate.css', "<link rel='stylesheet' type='text/css' href='lib/animate.css'>"],
-  // ['bootstrap.min.css', "<link rel='stylesheet' type='text/css' href='lib/bootstrap.min.css'>"],
-  // ['font-awesome.min.css', "<link rel='stylesheet' type='text/css' href='lib/font-awesome.min.css'>"]
 ]
 
 var jsLib = [
   ['krunch+compiler.min.js', "<script src='lib/krunch+compiler.min.js'></script>"]
-  // ['jquery-3.1.1.min.js', "<script src='lib/jquery-3.1.1.min.js'></script>"],
-  // ['anime.min.js', "<script src='lib/anime.min.js'></script>"],
-  // ['bootstrap.min.js', "<script src='lib/bootstrap.min.js'></script>"],
-  // ['p5.min.js', "<script src='lib/p5.min.js'></script>"],
-  // ['three.min.js', "<script src='lib/three.min.js'></script>"]
 ]
 
 // 3. Main Functions for Electron
@@ -69,7 +61,7 @@ onload = function() {
       },
       lineNumbers: true,
       lineWrapping: true,
-      indentWithTabs: true,
+      indentWithTabs: false,
       indentUnit: 1,
       smartIndent: true,
       scrollbarStyle: 'overlay',
@@ -84,7 +76,7 @@ onload = function() {
       },
       lineNumbers: true,
       lineWrapping: true,
-      indentWithTabs: true,
+      indentWithTabs: false,
       indentUnit: 1,
       smartIndent: true,
       scrollbarStyle: 'overlay',
