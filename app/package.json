@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.6.1",
+    "electron": "^9.2.1",
     "standard": "^9.0.0"
   }
 }
