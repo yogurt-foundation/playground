@@ -48,7 +48,7 @@ onload = function() {
       lineWrapping: true,
       autofocus: true,
       indentWithTabs: false,
-      indentUnit: 1,
+      indentUnit: 2,
       smartIndent: true,
       scrollbarStyle: 'overlay',
       theme: 'base16-ocean-dark'
@@ -62,7 +62,7 @@ onload = function() {
       lineNumbers: true,
       lineWrapping: true,
       indentWithTabs: false,
-      indentUnit: 1,
+      indentUnit: 2,
       smartIndent: true,
       scrollbarStyle: 'overlay',
       theme: 'base16-ocean-dark'
@@ -77,7 +77,7 @@ onload = function() {
       lineNumbers: true,
       lineWrapping: true,
       indentWithTabs: false,
-      indentUnit: 1,
+      indentUnit: 2,
       smartIndent: true,
       scrollbarStyle: 'overlay',
       theme: 'base16-ocean-dark'

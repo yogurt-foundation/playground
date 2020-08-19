@@ -1,7 +1,7 @@
 {
   "name": "yogurt-playground",
-  "version": "0.1.3",
-  "description": "A developer playground for testing and prototyping with Yogurt CSS and Yogurt FX",
+  "version": "0.1.2",
+  "description": "A developer playground for testing and prototyping with Yogurt CSS framework",
   "productName": "Yogurt Playground",
   "license": "MIT",
   "main": "./app/",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "asar": "^0.13.0",
-    "electron": "^9.1.0",
+    "electron": "^1.6.1",
     "electron-packager": "^8.5.2",
     "standard": "^9.0.0"
   }

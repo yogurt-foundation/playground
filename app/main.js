@@ -26,8 +26,7 @@ app.on('ready', () => {
     height: 700,
     frame: false,
     minHeight: 600,
-    minWidth: 600,
-    icon: path.join(__dirname, '../build/CB.ico')
+    minWidth: 600
   })
 
   mainWindow.maximize()

@@ -1,6 +1,6 @@
 {
   "name": "yogurt-playground",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A development playground for testing and prototyping with Yogurt",
   "productName": "yogurt-playground",
   "main": "main.js",
@@ -12,15 +12,15 @@
     "url": "https://github.com/loouislow81/yogurt-playground"
   },
   "keywords": [
-    "front-end",
+    "frontend",
     "playground",
     "mockup",
     "testing",
-    "ui"
+    "ide"
   ],
   "license": "MIT",
   "devDependencies": {
-    "electron": "^9.1.0",
+    "electron": "^1.6.1",
     "standard": "^9.0.0"
   }
 }

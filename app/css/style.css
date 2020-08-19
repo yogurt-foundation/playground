@@ -7,7 +7,6 @@ body {
   padding: 0;
 }
 
-
 /*Menubar styles begin here*/
 
 #menu-bar {
@@ -220,6 +219,7 @@ li.dropdown {
   height: 0px;
   line-height: 0px;
   text-align: center;
+  /*padding-right: 5px;*/
 }
 
 .editor-focus {

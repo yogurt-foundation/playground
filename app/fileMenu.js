@@ -50,6 +50,21 @@ function handleSave() {
       if (err) {
         console.error(err)
       }
+      // console.log('success HTML')
+    })
+    // Write CSS
+    fs.writeFile(path + '\\style.css', css.getValue(), (err) => {
+      if (err) {
+        console.error(err)
+      }
+      // console.log('success CSS')
+    })
+    // Write JS
+    fs.writeFile(path + '\\script.js', js.getValue(), (err) => {
+      if (err) {
+        console.error(err)
+      }
+      // console.log('success JS')
     })
     for (var j = 0; j < styFlags.length; j++) {
       if (styFlags[j] === 1) {

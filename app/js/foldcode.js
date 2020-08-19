@@ -36,7 +36,7 @@ CodeMirror.tagRangeFinder = function(cm, line, hideEnd) {
           var slash = lt.lastIndexOf("/", gt);
           if (-1 != slash && slash < gt) {
             var str = lineText.substr(slash, gt - slash + 1);
-            if (!str.match(/\/\s*\>/)) { // yep, that's the end of empty tag
+            if (!str.match( /\/\s*\>/ )) { // yep, that's the end of empty tag
               if (hideEnd === true) l++;
               return l;
             }
@@ -55,7 +55,7 @@ CodeMirror.tagRangeFinder = function(cm, line, hideEnd) {
       else { // empty tag?
         // check if really empty tag
         var str = lineText.substr(slashPos, gtPos - slashPos + 1);
-        if (!str.match(/\/\s*\>/)) { // finally not empty
+        if (!str.match( /\/\s*\>/ )) { // finally not empty
           found = true;
           // don't continue
         }
@@ -113,21 +113,17 @@ CodeMirror.braceRangeFinder = function(cm, line, hideEnd) {
   var lineText = cm.getLine(line);
   var startChar = lineText.lastIndexOf("{");
   if (startChar < 0 || lineText.lastIndexOf("}") > startChar) return;
-  var tokenType = cm.getTokenAt({ line: line, ch: startChar }).className;
-  var count = 1,
-    lastLine = cm.lineCount(),
-    end;
+  var tokenType = cm.getTokenAt({line: line, ch: startChar}).className;
+  var count = 1, lastLine = cm.lineCount(), end;
   outer: for (var i = line + 1; i < lastLine; ++i) {
-    var text = cm.getLine(i),
-      pos = 0;
+    var text = cm.getLine(i), pos = 0;
     for (;;) {
-      var nextOpen = text.indexOf("{", pos),
-        nextClose = text.indexOf("}", pos);
+      var nextOpen = text.indexOf("{", pos), nextClose = text.indexOf("}", pos);
       if (nextOpen < 0) nextOpen = text.length;
       if (nextClose < 0) nextClose = text.length;
       pos = Math.min(nextOpen, nextClose);
       if (pos == text.length) break;
-      if (cm.getTokenAt({ line: i, ch: pos + 1 }).className == tokenType) {
+      if (cm.getTokenAt({line: i, ch: pos + 1}).className == tokenType) {
         if (pos == nextOpen) ++count;
         else if (!--count) { end = i; break outer; }
       }
@@ -141,8 +137,7 @@ CodeMirror.braceRangeFinder = function(cm, line, hideEnd) {
 
 CodeMirror.indentRangeFinder = function(cm, line) {
   var tabSize = cm.getOption("tabSize");
-  var myIndent = cm.getLineHandle(line).indentation(tabSize),
-    last;
+  var myIndent = cm.getLineHandle(line).indentation(tabSize), last;
   for (var i = line + 1, end = cm.lineCount(); i < end; ++i) {
     var handle = cm.getLineHandle(i);
     if (!/^\s*$/.test(handle.text)) {
@@ -162,7 +157,7 @@ CodeMirror.newFoldFunction = function(rangeFinder, markText, hideEnd) {
     for (var i = 0; i < folded.length; ++i) {
       var start = cm.lineInfo(folded[i].start);
       if (!start) folded.splice(i--, 1);
-      else if (start.line == n) return { pos: i, region: folded[i] };
+      else if (start.line == n) return {pos: i, region: folded[i]};
     }
   }
 
@@ -178,8 +173,7 @@ CodeMirror.newFoldFunction = function(rangeFinder, markText, hideEnd) {
       if (known) {
         folded.splice(known.pos, 1);
         expand(cm, known.region);
-      }
-      else {
+      } else {
         var end = rangeFinder(cm, line, hideEnd);
         if (end == null) return;
         var hidden = [];
@@ -188,7 +182,7 @@ CodeMirror.newFoldFunction = function(rangeFinder, markText, hideEnd) {
           if (handle) hidden.push(handle);
         }
         var first = cm.setMarker(line, markText);
-        var region = { start: first, hidden: hidden };
+        var region = {start: first, hidden: hidden};
         cm.onDeleteLine(first, function() { expand(cm, region); });
         folded.push(region);
       }

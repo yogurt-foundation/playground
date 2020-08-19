@@ -34,7 +34,7 @@
 
 .cm-s-base16-ocean-dark span.cm-property,
 .cm-s-base16-ocean-dark span.cm-attribute {
-  color: #a3be8c;
+  color: #f6ffef;
 }
 
 .cm-s-base16-ocean-dark span.cm-keyword {
@@ -42,7 +42,7 @@
 }
 
 .cm-s-base16-ocean-dark span.cm-string {
-  color: #ebcb8b;
+  color: #ffeb3b;
 }
 
 .cm-s-base16-ocean-dark span.cm-variable {
@@ -67,7 +67,7 @@
 }
 
 .cm-s-base16-ocean-dark span.cm-tag {
-  color: #bf616a;
+  color: #e759ff;
 }
 
 .cm-s-base16-ocean-dark span.cm-link {
