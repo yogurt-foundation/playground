@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="assets/logo512_dark.png" width="100">
+  <img src="https://github.com/yogurt-foundation/playground/blob/master/assets/logo512_dark.png?raw=true" width="100">
 </p>
 
 # playground
@@ -27,7 +27,7 @@
 A developer playground for testing and prototyping with Yogurt CSS framework and other micro libraries.
 
 <p align="center">
-  <img src="assets/screenshot_02.png" height="auto" width="auto">
+  <img src="https://github.com/yogurt-foundation/playground/blob/master/assets/screenshot_02.png?raw=true" height="auto" width="auto">
 </p>
 
 ---
