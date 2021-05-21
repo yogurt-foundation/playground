@@ -1,7 +1,3 @@
-<p align="left">
-  <img src="https://github.com/yogurt-foundation/playground/blob/master/assets/logo512_dark.png?raw=true" width="100">
-</p>
-
 # playground
 
 <p align="left">
@@ -26,38 +22,20 @@
 
 A developer playground for testing and prototyping with Yogurt CSS framework and other micro libraries.
 
-<p align="center">
-  <img src="https://github.com/yogurt-foundation/playground/blob/master/assets/screenshot_02.png?raw=true" height="auto" width="auto">
-</p>
-
 ---
+
+### _build
+
+```bash
+$ yarn build
+```
 
 ### _run
 
 ```bash
 # YARN
-$ yarn start
-
-# NPM
-$ npm run start
+$ yarn serve
 ```
-
-### _build
-
-```bash
-# build linux app
-$ yarn build:linux
-
-# build mac app
-$ yarn build:mac
-
-# build windows app
-$ yarn build:windows
-```
-
-### _binary
-
-[Download the precompiled desktop binary](https://github.com/yogurt-foundation/playground/releases/tag/0.1.2-beta).
 
 ---
 
