@@ -1,23 +1,31 @@
 <template>
-  <y style="display: flex">
+  <y v-bind:class="[isActive ? 'relative flex flex-row' : 'relative flex flex-col flex-wrap']">
+
     <el-tabs
       v-model="activeName"
       type="border-card"
-      style="flex: 1">
+      v-bind:class="[isActive ? 'flex-1' : 'flex-1 w-screen']">
 
-      <el-tab-pane name="html" :lazy="true">
+      <y class="absolute top-6 left-48 w-4 h-4 bg-gray-600 (hover)bg-gray-400 rounded-full transition duration-300 ease-in-out cursor-pointer"
+        @click="toggleModes()"
+        title="Horizontal / Vertical"></y>
+
+      <el-tab-pane
+        name="html"
+        :lazy="true">
+
         <MyEditor
           :language="'html'"
           :codes="htmlCodes"
           @onCodeChange="htmlOnCodeChange"
         />
+
       </el-tab-pane>
 
     </el-tabs>
 
-    <y
-      style="height:100vh; flex:1"
-      id="result"></y>
+    <y v-bind:class="[isActive ? 'flex-1' : 'flex-1 w-screen']"
+       id="result"></y>
 
   </y>
 </template>
@@ -63,6 +71,7 @@
         htmlEditor: null,
         jsEditor: null,
         cssEditor: null,
+        isActive: true
       };
     },
     mounted() {
@@ -105,6 +114,9 @@
         this.cssCodes = value;
         this.runCode();
       },
+      toggleModes: function(){
+        this.isActive = !this.isActive;
+      }
     },
   };
 </script>
