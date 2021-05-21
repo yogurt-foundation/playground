@@ -1,9 +1,9 @@
 <template>
   <y>
     <y
-      id="container"
+      style="height: 100vh"
       ref="container"
-      style="height: 100vh">
+      id="container">
     </y>
   </y>
 </template>
