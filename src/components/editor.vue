@@ -1,10 +1,7 @@
 <template>
-  <y>
-    <y
-      style="height: 100vh"
-      ref="container"
-      id="container">
-    </y>
+  <y class="h-screen"
+     ref="container"
+     id="container">
   </y>
 </template>
 
@@ -31,17 +28,19 @@
             selectOnLineNumbers: true,
             roundedSelection: false,
             readOnly: false,
-            cursorStyle: "line",
-            lineNumbers: "on",
+            cursorStyle: 'line',
+            lineNumbers: 'on',
             automaticLayout: true,
             glyphMargin: true,
             useTabStops: false,
             fontSize: 14,
             autoIndent: true,
-            renderWhitespace: "all",
-            wordWrap: "on",
-            minimap: false,
-            autoClosingBrackets: "always",
+            renderWhitespace: 'all',
+            wordWrap: 'on',
+            minimap: {
+              enabled: false
+            },
+            autoClosingBrackets: 'always',
           };
         },
       },
@@ -63,13 +62,31 @@
           value: self.codesCopy || self.codes,
           language: self.language,
           theme: "vs-dark",
-          editorOptions: self.editorOptions,
+          editorOptions: {
+            selectOnLineNumbers: true,
+            roundedSelection: false,
+            readOnly: false,
+            cursorStyle: 'line',
+            lineNumbers: 'on',
+            automaticLayout: true,
+            glyphMargin: true,
+            useTabStops: false,
+            fontSize: 14,
+            autoIndent: true,
+            renderWhitespace: 'all',
+            wordWrap: 'on',
+            minimap: {
+              enabled: false
+            },
+            autoClosingBrackets: 'always',
+          }
         });
         self.monacoEditor.onDidChangeModelContent(function (event) {
           self.codesCopy = self.monacoEditor.getValue();
           self.$emit("onCodeChange", self.monacoEditor.getValue(), event);
         });
         window.addEventListener("resize", function () {
+          console.log("try to resize Editor");
           self.initEditor();
         });
       },
@@ -77,9 +94,3 @@
   };
 </script>
 
-<style scoped>
-  #container {
-    height: 100%;
-    text-align: left;
-  }
-</style>
