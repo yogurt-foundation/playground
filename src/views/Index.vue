@@ -1,30 +1,37 @@
 <template>
-  <y v-bind:class="[isActive ? 'relative flex flex-row' : 'relative flex flex-col flex-wrap']">
+  <y v-bind:class="[isActive ? '' : '']"
+     class="relative flex">
 
-    <el-tabs
-      v-model="activeName"
-      type="border-card"
-      v-bind:class="[isActive ? 'flex-1' : 'flex-1 w-screen']">
+    <!-- Editor -->
+    <y v-model="activeName"
+       type="border-card"
+       v-bind:class="[isActive ? 'flex-1' : 'flex-1']"
+       style="">
 
       <y class="absolute top-6 left-48 w-4 h-4 bg-gray-600 (hover)bg-gray-400 rounded-full transition duration-300 ease-in-out cursor-pointer"
-        @click="toggleModes()"
-        title="Horizontal / Vertical"></y>
+         @click="toggleModes()"
+         title="Horizontal / Vertical"></y>
 
-      <el-tab-pane
-        name="html"
-        :lazy="true">
+      <y name="html" :lazy="true">
 
         <MyEditor
+          v-bind:class="[isActive ? '' : '']"
           :language="'html'"
           :codes="htmlCodes"
           @onCodeChange="htmlOnCodeChange"
         />
 
-      </el-tab-pane>
+      </y>
 
-    </el-tabs>
+    </y>
 
-    <y v-bind:class="[isActive ? 'flex-1' : 'flex-1 w-screen']"
+    <!-- Drag Bar -->
+    <y class="w-2 h-screen bg-charcoal-100 shadow-lg cursor-col-resize"
+       id="screenResizableDragger"></y>
+
+    <!-- Preview -->
+    <y v-bind:class="[isActive ? 'flex-1' : 'flex-1']"
+       style=""
        id="result"></y>
 
   </y>
@@ -65,35 +72,89 @@
     <!-- Responsive Screen Indicator -->\n\
     <y debug="screen" class="m-1"></y>\n\n\
   </body>',
-        javascriptCodes:
-          "let loadStyle = function(url) { return new Promise((resolve, reject) => { let link = document.createElement('link'); link.type = 'text/css'; link.rel = 'stylesheet'; link.onload = () => { resolve(); console.log('style has loaded'); }; link.href = url; let headScript = document.querySelector('script'); headScript.parentNode.insertBefore(link, headScript); }); }; loadStyle('https://yogurtcss.netlify.app/yogurt-1.1.6_solidcore.min.css')",
+        javascriptCodes: "let loadStyle = function(url) { return new Promise((resolve, reject) => { let link = document.createElement('link'); link.type = 'text/css'; link.rel = 'stylesheet'; link.onload = () => { resolve(); console.log('style has loaded'); }; link.href = url; let headScript = document.querySelector('script'); headScript.parentNode.insertBefore(link, headScript); }); }; loadStyle('https://yogurtcss.netlify.app/yogurt-1.1.6_solidcore.min.css')",
         cssCodes: "",
         htmlEditor: null,
         jsEditor: null,
         cssEditor: null,
-        isActive: true
+        isActive: true,
       };
     },
     mounted() {
       this.runCode();
+
+      // Query the element
+      const resizer = document.getElementById("screenResizableDragger");
+      const leftSide = resizer.previousElementSibling;
+      const rightSide = resizer.nextElementSibling;
+
+      // The current position of mouse
+      let x = 0;
+      let y = 0;
+
+      // Width of left side
+      let leftWidth = 0;
+
+      // Handle the mousedown event
+      // that's triggered when user drags the resizer
+      const mouseDownHandler = function (e) {
+        // Get the current mouse position
+        x = e.clientX;
+        y = e.clientY;
+        leftWidth = leftSide.getBoundingClientRect().width;
+
+        // Attach the listeners to `document`
+        document.addEventListener("mousemove", mouseMoveHandler);
+        document.addEventListener("mouseup", mouseUpHandler);
+      };
+
+      // Attach the handler
+      resizer.addEventListener("mousedown", mouseDownHandler);
+
+      const mouseMoveHandler = function (e) {
+        // How far the mouse has been moved
+        const dx = e.clientX - x;
+        const dy = e.clientY - y;
+
+        const newLeftWidth =
+          ((leftWidth + dx) * 100) /
+          resizer.parentNode.getBoundingClientRect().width;
+        leftSide.style.width = `${newLeftWidth}%`;
+
+        resizer.style.cursor = "col-resize";
+
+        leftSide.style.userSelect = "none";
+        leftSide.style.pointerEvents = "none";
+
+        rightSide.style.userSelect = "none";
+        rightSide.style.pointerEvents = "none";
+      };
+
+      const mouseUpHandler = function () {
+        resizer.style.removeProperty("cursor");
+        document.body.style.removeProperty("cursor");
+
+        leftSide.style.removeProperty("user-select");
+        leftSide.style.removeProperty("pointer-events");
+
+        rightSide.style.removeProperty("user-select");
+        rightSide.style.removeProperty("pointer-events");
+
+        // Remove the handlers of `mousemove` and `mouseup`
+        document.removeEventListener("mousemove", mouseMoveHandler);
+        document.removeEventListener("mouseup", mouseUpHandler);
+        document.initEditor();
+      };
     },
     methods: {
       runCode() {
-        let t =
-          "<html><head><style type='text/css'>" +
-          this.cssCodes +
-          "</style></head><body>" +
-          this.htmlCodes +
-          "</body><script type='text/javascript'>" +
-          this.javascriptCodes +
-          "<\/script></html>";
+        let t = '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><style>' + this.cssCodes + '</style></head><body>' + this.htmlCodes + '</body><script>' + this.javascriptCodes + '<\/script></html>';
         let result = document.getElementById("result");
         result.innerHTML = "";
         let iframe = document.createElement("iframe");
         iframe.name = "result";
         iframe.id = "resultIframe";
-        iframe.sandbox =
-          "allow-forms allow-popups allow-scripts allow-same-origin allow-modals";
+        iframe.sandbox = "allow-forms allow-popups allow-scripts allow-same-origin allow-modals";
         iframe.frameBorder = "0";
         iframe.style.width = "100%";
         iframe.style.height = "100%";
@@ -114,16 +175,9 @@
         this.cssCodes = value;
         this.runCode();
       },
-      toggleModes: function(){
+      toggleModes: function () {
         this.isActive = !this.isActive;
-      }
+      },
     },
   };
 </script>
-
-
-<style scoped>
-/deep/ .el-tabs__nav .is-disabled {
-  cursor: pointer;
-}
-</style>
