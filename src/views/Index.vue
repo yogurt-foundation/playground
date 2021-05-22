@@ -1,21 +1,28 @@
 <template>
-  <y v-bind:class="[isActive ? '' : '']"
-     class="relative flex">
+  <y v-bind:class="[isActive ? 'relative flex flex-row bg-charcoal-100' : 'relative flex flex-row gradient-vicious-stance']">
 
-    <!-- Editor -->
+    <y class="z-10 absolute top-0 left-0 flex justify-start items-center h-screen w-full select-none">
+      <y class="ml-24">
+        <img class="h-auto w-64 object-cover object-center overflow-hidden invert-1 opacity-75"
+            src="assets/image/logo_full.svg"
+            title="Yogurt">
+      </y>
+    </y>
+
+    <y v-bind:class="[isActive ? 'z-50 absolute top-2 right-2 w-5 h-5 bg-orange-600 border-4 border-gray-700 (hover)border-orange-600 rounded-full transition duration-300 ease-in-out cursor-pointer shadow-dreamy-sm filter saturate-4 animation blur-in duration-800' : 'z-50 absolute top-2 right-2 w-5 h-5 bg-gray-700 (hover)bg-gray-800 border-4 border-orange-600 (hover)border-gray-700 rounded-full transition duration-300 ease-in-out cursor-pointer shadow-dreamy-sm filter saturate-4 animation blur-in duration-800']"
+       @click="toggleModes()"
+       title="Show Editor or Preview screen">
+    </y>
+
+     <!-- Editor -->
     <y v-model="activeName"
-       type="border-card"
-       v-bind:class="[isActive ? 'flex-1' : 'flex-1']"
-       style="">
+       v-bind:class="[isActive ? 'z-10 flex-1 h-screen' : 'z-10 invisible']">
 
-      <y class="absolute top-6 left-48 w-4 h-4 bg-gray-600 (hover)bg-gray-400 rounded-full transition duration-300 ease-in-out cursor-pointer"
-         @click="toggleModes()"
-         title="Horizontal / Vertical"></y>
-
-      <y name="html" :lazy="true">
+      <y name="html"
+         :lazy="true">
 
         <MyEditor
-          v-bind:class="[isActive ? '' : '']"
+          class="mb-24"
           :language="'html'"
           :codes="htmlCodes"
           @onCodeChange="htmlOnCodeChange"
@@ -26,19 +33,23 @@
     </y>
 
     <!-- Drag Bar -->
-    <y class="w-2 h-screen bg-charcoal-100 shadow-lg cursor-col-resize"
-       id="screenResizableDragger"></y>
+    <y v-bind:class="[isActive ? 'w-1 h-screen' : 'z-20 w-4 h-screen bg-gray-600 (hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-300 ease-in-out filter saturate-4 shadow-dreamy-lg']"
+       title="Drag Window"
+       id="screenResizableDragger">
+    </y>
 
     <!-- Preview -->
-    <y v-bind:class="[isActive ? 'flex-1' : 'flex-1']"
-       style=""
+    <y v-bind:class="[isActive ? 'flex-1 h-screen bg-white' : 'z-20 flex-1 h-screen bg-white']"
+       style="min-width: 320px"
        id="result"></y>
 
   </y>
 </template>
 
+
 <script>
   import MyEditor from "../components/editor";
+  import { splitWindowDragBar } from "../components/dragbar";
   export default {
     components: {
       MyEditor,
@@ -69,8 +80,6 @@
         </span>\n\
       </y>\n\
     </y>\n\n\
-    <!-- Responsive Screen Indicator -->\n\
-    <y debug="screen" class="m-1"></y>\n\n\
   </body>',
         javascriptCodes: "let loadStyle = function(url) { return new Promise((resolve, reject) => { let link = document.createElement('link'); link.type = 'text/css'; link.rel = 'stylesheet'; link.onload = () => { resolve(); console.log('style has loaded'); }; link.href = url; let headScript = document.querySelector('script'); headScript.parentNode.insertBefore(link, headScript); }); }; loadStyle('https://yogurtcss.netlify.app/yogurt-1.1.6_solidcore.min.css')",
         cssCodes: "",
@@ -82,75 +91,15 @@
     },
     mounted() {
       this.runCode();
-
-      // Query the element
-      const resizer = document.getElementById("screenResizableDragger");
-      const leftSide = resizer.previousElementSibling;
-      const rightSide = resizer.nextElementSibling;
-
-      // The current position of mouse
-      let x = 0;
-      let y = 0;
-
-      // Width of left side
-      let leftWidth = 0;
-
-      // Handle the mousedown event
-      // that's triggered when user drags the resizer
-      const mouseDownHandler = function (e) {
-        // Get the current mouse position
-        x = e.clientX;
-        y = e.clientY;
-        leftWidth = leftSide.getBoundingClientRect().width;
-
-        // Attach the listeners to `document`
-        document.addEventListener("mousemove", mouseMoveHandler);
-        document.addEventListener("mouseup", mouseUpHandler);
-      };
-
-      // Attach the handler
-      resizer.addEventListener("mousedown", mouseDownHandler);
-
-      const mouseMoveHandler = function (e) {
-        // How far the mouse has been moved
-        const dx = e.clientX - x;
-        const dy = e.clientY - y;
-
-        const newLeftWidth =
-          ((leftWidth + dx) * 100) /
-          resizer.parentNode.getBoundingClientRect().width;
-        leftSide.style.width = `${newLeftWidth}%`;
-
-        resizer.style.cursor = "col-resize";
-
-        leftSide.style.userSelect = "none";
-        leftSide.style.pointerEvents = "none";
-
-        rightSide.style.userSelect = "none";
-        rightSide.style.pointerEvents = "none";
-      };
-
-      const mouseUpHandler = function () {
-        resizer.style.removeProperty("cursor");
-        document.body.style.removeProperty("cursor");
-
-        leftSide.style.removeProperty("user-select");
-        leftSide.style.removeProperty("pointer-events");
-
-        rightSide.style.removeProperty("user-select");
-        rightSide.style.removeProperty("pointer-events");
-
-        // Remove the handlers of `mousemove` and `mouseup`
-        document.removeEventListener("mousemove", mouseMoveHandler);
-        document.removeEventListener("mouseup", mouseUpHandler);
-        document.initEditor();
-      };
+      splitWindowDragBar();
     },
     methods: {
       runCode() {
-        let t = '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><style>' + this.cssCodes + '</style></head><body>' + this.htmlCodes + '</body><script>' + this.javascriptCodes + '<\/script></html>';
+        let t = '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><style>' + this.cssCodes + '</style></head><body>' + this.htmlCodes + '<y debug="screen" class="m-1"></y></body><script>' + this.javascriptCodes + '<\/script></html>';
+
         let result = document.getElementById("result");
         result.innerHTML = "";
+
         let iframe = document.createElement("iframe");
         iframe.name = "result";
         iframe.id = "resultIframe";
