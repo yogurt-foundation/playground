@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
 
 import 'yogurt-css/dist/yogurt-1.1.5_solidcore.min.css';
 

@@ -1,7 +1,9 @@
 <template>
+
   <div id="app">
     <router-view/>
   </div>
+
 </template>
 
 
@@ -15,9 +17,6 @@
     height: 100vh;
     overflow: hidden;
   }
-  .monaco-editor {
-    position: absolute;
-}
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
