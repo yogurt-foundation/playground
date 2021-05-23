@@ -1,6 +1,6 @@
 export function splitWindowDragBar() {
   // Query the element
-  const resizer = document.getElementById("screenResizableDragger");
+  const resizer = document.getElementById('screenResizableDragger');
   const leftSide = resizer.previousElementSibling;
   const rightSide = resizer.nextElementSibling;
 
@@ -20,12 +20,12 @@ export function splitWindowDragBar() {
     leftWidth = leftSide.getBoundingClientRect().width;
 
     // Attach the listeners to `document`
-    document.addEventListener("mousemove", mouseMoveHandler);
-    document.addEventListener("mouseup", mouseUpHandler);
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
   };
 
   // Attach the handler
-  resizer.addEventListener("mousedown", mouseDownHandler);
+  resizer.addEventListener('mousedown', mouseDownHandler);
 
   const mouseMoveHandler = function (e) {
     // How far the mouse has been moved
@@ -37,28 +37,29 @@ export function splitWindowDragBar() {
       resizer.parentNode.getBoundingClientRect().width;
     leftSide.style.width = `${newLeftWidth}%`;
 
-    resizer.style.cursor = "col-resize";
+    resizer.style.cursor = 'col-resize';
 
-    leftSide.style.userSelect = "none";
-    leftSide.style.pointerEvents = "none";
+    leftSide.style.userSelect = 'none';
+    leftSide.style.pointerEvents = 'none';
 
-    rightSide.style.userSelect = "none";
-    rightSide.style.pointerEvents = "none";
+    rightSide.style.userSelect = 'none';
+    rightSide.style.pointerEvents = 'none';
   };
 
   const mouseUpHandler = function () {
-    resizer.style.removeProperty("cursor");
-    document.body.style.removeProperty("cursor");
+    resizer.style.removeProperty('cursor');
+    document.body.style.removeProperty('cursor');
 
-    leftSide.style.removeProperty("user-select");
-    leftSide.style.removeProperty("pointer-events");
+    leftSide.style.removeProperty('user-select');
+    leftSide.style.removeProperty('pointer-events');
 
-    rightSide.style.removeProperty("user-select");
-    rightSide.style.removeProperty("pointer-events");
+    rightSide.style.removeProperty('user-select');
+    rightSide.style.removeProperty('pointer-events');
 
     // Remove the handlers of `mousemove` and `mouseup`
-    document.removeEventListener("mousemove", mouseMoveHandler);
-    document.removeEventListener("mouseup", mouseUpHandler);
+    document.removeEventListener('mousemove', mouseMoveHandler);
+    document.removeEventListener('mouseup', mouseUpHandler);
     document.initEditor();
   };
 }
+

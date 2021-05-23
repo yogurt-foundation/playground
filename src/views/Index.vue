@@ -74,7 +74,7 @@
   import { splitWindowDragBar } from "../components/dragbar";
   export default {
     components: {
-      MyEditor,
+      MyEditor
     },
     data() {
       return {
@@ -108,7 +108,7 @@
         htmlEditor: null,
         jsEditor: null,
         cssEditor: null,
-        isActive: true,
+        isActive: true
       };
     },
     mounted() {
@@ -148,8 +148,8 @@
       },
       toggleWindowModes: function () {
         this.isActive = !this.isActive;
-      },
-    },
+      }
+    }
   };
 </script>
 
