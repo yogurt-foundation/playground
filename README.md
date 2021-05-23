@@ -24,20 +24,26 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_01.png" height="auto" width="auto">
+</p>
+
+<p align="center">
   <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_02.png" height="auto" width="auto">
 </p>
 
----
-
-### _build
+## _build
 
 ```bash
+# NPM
+$ npm run build
+# YARN
 $ yarn build
 ```
 
-### _run
+## _run
 
 ```bash
+# NPM
+$ npm run serve
 # YARN
 $ yarn serve
 ```
