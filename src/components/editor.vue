@@ -16,19 +16,19 @@
         type: String,
         default: function () {
           return "";
-        },
+        }
       },
       language: {
         type: String,
         default: function () {
           return "html";
-        },
+        }
       },
       theme: {
         type: String,
         default: function () {
           return "vs-dark";
-        },
+        }
       },
       editorOptions: {
         type: Object,
@@ -51,8 +51,8 @@
             },
             autoClosingBrackets: 'always'
           };
-        },
-      },
+        }
+      }
     },
     data() {
       return {
@@ -79,8 +79,8 @@
         window.addEventListener("resize", function () {
           self.initEditor();
         });
-      },
-    },
+      }
+    }
   };
 </script>
 
