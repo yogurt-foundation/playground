@@ -1,6 +1,6 @@
 <template>
 
-  <y class="h-screen bg-charcoal-100"
+  <y class="h-screen bg-orange-600"
      ref="container"
      id="container">
   </y>

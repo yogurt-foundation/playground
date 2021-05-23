@@ -1,28 +1,44 @@
 <template>
-  <y v-bind:class="[isActive ? 'relative flex flex-row bg-charcoal-100' : 'relative flex flex-row gradient-vicious-stance']">
+  <y v-bind:class="[isActive ? 'relative flex flex-row bg-blue-500' : 'relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-500 overflow-hidden']">
 
-    <y class="z-10 absolute top-0 left-0 flex justify-start items-center h-screen w-full select-none">
+    <!-- Logo -->
+    <y class="z-10 absolute top-0 left-0 flex justify-start items-center h-screen w-full">
       <y class="ml-24">
-        <img class="h-auto w-64 object-cover object-center overflow-hidden invert-1 opacity-75"
+        <img class="h-auto w-64 object-cover object-center overflow-hidden invert-1 opacity-75 select-none"
             src="assets/image/logo_full.svg"
             title="Yogurt">
       </y>
     </y>
 
-    <y v-bind:class="[isActive ? 'z-50 absolute top-2 right-2 w-5 h-5 bg-orange-600 border-4 border-gray-700 (hover)border-orange-600 rounded-full transition duration-300 ease-in-out cursor-pointer shadow-dreamy-sm filter saturate-4 animation blur-in duration-800' : 'z-50 absolute top-2 right-2 w-5 h-5 bg-gray-700 (hover)bg-gray-800 border-4 border-orange-600 (hover)border-gray-700 rounded-full transition duration-300 ease-in-out cursor-pointer shadow-dreamy-sm filter saturate-4 animation blur-in duration-800']"
-       @click="toggleModes()"
-       title="Show Editor or Preview screen">
+    <!-- Switch -->
+    <y class="z-50"
+       @click="toggleWindowModes()">
+       <!-- Editor -->
+      <y v-bind:class="[isActive ? 'absolute bottom-4 left-4' : 'hidden']">
+        <y class="(group) p-2 bg-orange-600 (hover)bg-orange-700 (active)bg-orange-800 shadow-dreamy-lg filter saturate-4 rounded-lg transform (hover)scale-110 transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer"
+           title="Switch to Preview Mode">
+          <img class="invert-1 (group-hover)invert-0 w-8 h-8 object-fit object-center transition duration-300 ease-in-out"
+               src="assets/image/preview.svg">
+        </y>
+      </y>
+      <!-- Preview -->
+      <y v-bind:class="[isActive ? 'hidden' : 'absolute bottom-4 left-4']">
+        <y class="(group) p-2 bg-orange-600 (hover)bg-orange-700 (active)bg-orange-800 shadow-dreamy-lg filter saturate-4 rounded-lg transform (hover)scale-110 transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer"
+           title="Switch to Editor Mode">
+          <img class="invert-1 (group-hover)invert-0 w-8 h-8 object-fit object-center transition duration-300 ease-in-out"
+               src="assets/image/editor.svg">
+        </y>
+      </y>
     </y>
 
      <!-- Editor -->
     <y v-model="activeName"
-       v-bind:class="[isActive ? 'z-10 flex-1 h-screen' : 'z-10 invisible']">
+       v-bind:class="[isActive ? 'z-10 flex-1 h-screen' : 'flex-initial invisible']">
 
       <y name="html"
          :lazy="true">
 
         <MyEditor
-          class="mb-24"
           :language="'html'"
           :codes="htmlCodes"
           @onCodeChange="htmlOnCodeChange"
@@ -32,14 +48,20 @@
 
     </y>
 
-    <!-- Drag Bar -->
-    <y v-bind:class="[isActive ? 'w-1 h-screen' : 'z-20 w-4 h-screen bg-gray-600 (hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-300 ease-in-out filter saturate-4 shadow-dreamy-lg']"
-       title="Drag Window"
+    <!-- Responsive Drag Bar -->
+    <y v-bind:class="[isActive ? 'z-20 w-0 invisible' : 'z-20 w-10 h-full visible']"
+       title="Drag Responsive Window"
        id="screenResizableDragger">
+      <y class="(group) py-4 h-full flex flex-col justify-start items-center filter saturate-4">
+        <y v-bind:class="[isActive ? 'invisible' : 'flex justify-center items-center py-2 w-10 h-32 bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-300 ease-in-out shadow-dreamy-lg rounded-l-md']">
+          <y class="my-1 mx-1 w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
+          <y class="my-1 mx-px w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
+        </y>
+      </y>
     </y>
 
     <!-- Preview -->
-    <y v-bind:class="[isActive ? 'flex-1 h-screen bg-white' : 'z-20 flex-1 h-screen bg-white']"
+    <y v-bind:class="[isActive ? 'z-20 flex-none h-screen bg-white' : 'z-20 flex-1 h-screen bg-white']"
        style="min-width: 320px"
        id="result"></y>
 
@@ -81,8 +103,8 @@
       </y>\n\
     </y>\n\n\
   </body>',
-        javascriptCodes: "let loadStyle = function(url) { return new Promise((resolve, reject) => { let link = document.createElement('link'); link.type = 'text/css'; link.rel = 'stylesheet'; link.onload = () => { resolve(); console.log('style has loaded'); }; link.href = url; let headScript = document.querySelector('script'); headScript.parentNode.insertBefore(link, headScript); }); }; loadStyle('https://yogurtcss.netlify.app/yogurt-1.1.6_solidcore.min.css')",
-        cssCodes: "",
+        javascriptCodes: "let loadStyle = function(url) { return new Promise((resolve, reject) => { let link = document.createElement('link'); link.type = 'text/css'; link.rel = 'stylesheet'; link.onload = () => { resolve(); }; link.href = url; let headScript = document.querySelector('script'); headScript.parentNode.insertBefore(link, headScript); }); }; loadStyle('assets/css/yogurt-1.1.6_solidcore.min.css')",
+        cssCodes: "::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background-color:transparent}::-webkit-scrollbar-thumb{background-color:#d6dee1;border-radius:20px;border:0px solid transparent;background-clip:content-box}::-webkit-scrollbar-thumb:hover{background-color:#a8bbbf}",
         htmlEditor: null,
         jsEditor: null,
         cssEditor: null,
@@ -124,9 +146,10 @@
         this.cssCodes = value;
         this.runCode();
       },
-      toggleModes: function () {
+      toggleWindowModes: function () {
         this.isActive = !this.isActive;
       },
     },
   };
 </script>
+
