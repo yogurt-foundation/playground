@@ -39,7 +39,7 @@
     <!-- back to Editor -->
     <y v-bind:class="[isActive ? 'z-50 absolute bottom-5 left-32 ml-6' : 'hidden']">
       <y class="(group) flex justify-center items-center px-3 py-2 bg-charcoal-800 (hover)bg-orange-700 (active)bg-orange-800 border-4 border-transparent (hover)border-orange-600 shadow-dreamy-lg filter saturate-4 rounded-lg transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none"
-         title="Run Code (F2 or Ctrl+Alt+R)"
+         title="Run Code (F2 or Ctrl+Alt+/)"
          @click="runCode">
         <img class="invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-6 h-6 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110"
              src="assets/image/editor.svg">
@@ -103,7 +103,9 @@
           '<!-- \n\
     Welcome to Yogurt Playground!\n\
     Here you can testing or prototyping complex or simple UI online.\n\
-    Framework Version: 1.1.6-beta\n\
+    Framework Version: 1.1.6-beta\n\n\
+    (?) F1 for Command Palette\n\
+    (?) Ctrl+Alt+/ to Run Code\n\
   --> \n\n\
   <body class="font-default antialiased text-gray-600 (dark)text-gray-300 bg-gray-100 (dark)bg-gray-800">\n\n\
     <y class="h-screen (xs)px-4 flex flex-col justify-center items-center">\n\
@@ -142,9 +144,9 @@
       this.runCode();
       splitWindowDragBar();
 
-      // Shortcut key `ctrl+alt+r` or `f2` to run code
+      // Shortcut key `ctrl+alt+/` or `f2` to run code
       this.runCodeKeys = function(e) {
-        if (e.key === "r" && (e.altKey || e.metaKey) || e.key === "F2") {
+        if (e.key === "/" && (e.altKey || e.metaKey) || e.key === "F2") {
           e.preventDefault();
           this.runCode();
         }
@@ -155,13 +157,6 @@
       document.removeEventListener('keydown', this.runCodeKeys);
     },
     methods: {
-      test(e) {
-        if (!(e.keyCode === 82 && e.ctrlKey)) {
-          this.runCode();
-          return;
-        }
-        e.preventDefault();
-      },
       runCode() {
         let t = '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><style>' + this.cssCodes + '</style></head><body>' + this.htmlCodes + '</body><script>' + this.javascriptCodes + '<\\/script></html>';
 
