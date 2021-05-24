@@ -1,6 +1,6 @@
 <template>
 
-  <y class="h-screen bg-orange-600"
+  <y class="h-screen pattern ripple-lg text-charcoal-100 bg-charcoal-500"
      ref="container"
      id="container">
   </y>
@@ -10,6 +10,7 @@
 
 <script>
   import { editor } from "monaco-editor";
+
   export default {
     props: {
       codes: {
