@@ -1,5 +1,5 @@
 <template>
-  <y v-bind:class="[isActive ? 'relative flex flex-row bg-blue-500' : 'relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-500 overflow-hidden']">
+  <y v-bind:class="[isActive ? 'relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-500' : 'relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-500 overflow-hidden']">
 
     <!-- Logo -->
     <y class="z-10 absolute top-0 left-0 flex justify-start items-center h-screen w-full">
@@ -49,11 +49,11 @@
     </y>
 
     <!-- Responsive Drag Bar -->
-    <y v-bind:class="[isActive ? 'z-20 w-0 invisible' : 'z-20 w-10 h-full visible']"
+    <y v-bind:class="[isActive ? 'z-20 w-0 invisible' : 'z-20 w-auto h-full visible']"
        title="Drag Responsive Window"
        id="screenResizableDragger">
       <y class="(group) py-4 h-full flex flex-col justify-start items-center filter saturate-4">
-        <y v-bind:class="[isActive ? 'invisible' : 'flex justify-center items-center py-2 w-10 h-32 bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-300 ease-in-out shadow-dreamy-lg rounded-l-md']">
+        <y v-bind:class="[isActive ? 'invisible' : '-mr-8 transform (hover)-translate-x-8 flex justify-center items-center py-2 w-10 h-32 bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-300 ease-in-out shadow-dreamy-lg rounded-l-md select-none']">
           <y class="my-1 mx-1 w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
           <y class="my-1 mx-px w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
         </y>
@@ -61,9 +61,10 @@
     </y>
 
     <!-- Preview -->
-    <y v-bind:class="[isActive ? 'z-20 flex-none h-screen bg-white' : 'z-20 flex-1 h-screen bg-white']"
-       style="min-width: 320px"
-       id="result"></y>
+    <y v-bind:class="[isActive ? 'z-20 flex justify-center items-center flex-none h-screen' : 'z-20 flex-1 h-screen bg-white']">
+      <y v-bind:class="[isActive ? 'breakpoint-320 mobile-h-screen-540 h-full bg-white' : 'z-20 flex-1 h-screen bg-white breakpoint-320']"
+         id="result"></y>
+    </y>
 
   </y>
 </template>
@@ -72,6 +73,7 @@
 <script>
   import MyEditor from "../components/editor";
   import { splitWindowDragBar } from "../components/dragbar";
+
   export default {
     components: {
       MyEditor
@@ -153,3 +155,17 @@
   };
 </script>
 
+<style scoped>
+  .breakpoint-320 {
+    min-width: 320px;
+  }
+  .breakpoint-540 {
+    min-width: 540px;
+  }
+  .breakpoint-768 {
+    min-width: 768px;
+  }
+  .mobile-h-screen-540 {
+    height: 540px;
+  }
+</style>
