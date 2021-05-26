@@ -1,10 +1,10 @@
 <template>
-
-  <y class="h-screen pattern ripple-lg text-charcoal-100 bg-charcoal-500"
-     ref="container"
-     id="container">
+  <y
+    class="h-screen pattern ripple-lg text-charcoal-100 bg-charcoal-500"
+    ref="container"
+    id="container"
+  >
   </y>
-
 </template>
 
 
@@ -17,19 +17,19 @@
         type: String,
         default: function () {
           return "";
-        }
+        },
       },
       language: {
         type: String,
         default: function () {
           return "html";
-        }
+        },
       },
       theme: {
         type: String,
         default: function () {
           return "vs-dark";
-        }
+        },
       },
       editorOptions: {
         type: Object,
@@ -38,26 +38,26 @@
             selectOnLineNumbers: true,
             roundedSelection: false,
             readOnly: false,
-            cursorStyle: 'line',
-            lineNumbers: 'on',
+            cursorStyle: "line",
+            lineNumbers: "on",
             automaticLayout: true,
             glyphMargin: true,
             useTabStops: false,
             fontSize: 14,
             autoIndent: true,
-            renderWhitespace: 'all',
-            wordWrap: 'on',
+            renderWhitespace: "all",
+            wordWrap: "on",
             minimap: {
-              enabled: false
+              enabled: false,
             },
-            autoClosingBrackets: 'always'
+            autoClosingBrackets: "always",
           };
-        }
-      }
+        },
+      },
     },
     data() {
       return {
-        codesCopy: null
+        codesCopy: null,
       };
     },
     mounted() {
@@ -66,12 +66,12 @@
     methods: {
       initEditor() {
         let self = this;
-        self.$refs.container.innerHTML = '';
+        self.$refs.container.innerHTML = "";
         self.monacoEditor = editor.create(self.$refs.container, {
           value: self.codesCopy || self.codes,
           language: self.language,
           theme: self.theme,
-          editorOptions: self.editorOptions
+          editorOptions: self.editorOptions,
         });
         self.monacoEditor.onDidChangeModelContent(function (event) {
           self.codesCopy = self.monacoEditor.getValue();
@@ -80,8 +80,8 @@
         window.addEventListener("resize", function () {
           self.initEditor();
         });
-      }
-    }
+      },
+    },
   };
 </script>
 

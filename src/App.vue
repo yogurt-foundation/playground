@@ -1,24 +1,22 @@
 <template>
-
   <y id="app">
-    <router-view/>
+    <router-view />
   </y>
-
 </template>
 
 
 <style>
-  html{
+  html {
     height: 100vh;
     overflow: hidden;
   }
-  body{
+  body {
     margin: 0;
     height: 100vh;
     overflow: hidden;
   }
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
