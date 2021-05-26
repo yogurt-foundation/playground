@@ -12,7 +12,7 @@ const express = require('express');
 const server = express();
 const path = require('path');
 
-const views = __dirname + '/dist/';
+const views = __dirname + '/app/';
 
 server.use(express.static(views));
 

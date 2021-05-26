@@ -8,7 +8,7 @@ const resolve = (dir) => path.resolve(__dirname, dir);
 
 module.exports = {
   publicPath: './',
-  outputDir: 'dist',
+  outputDir: 'app',
   assetsDir: '',
   lintOnSave: false,
   runtimeCompiler: true,
