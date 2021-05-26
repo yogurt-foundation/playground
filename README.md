@@ -49,12 +49,12 @@ $ yarn build:app
 
 ```bash
 # NPM
-$ npm run build:native
+$ npm run build:native:{all|linux|windows|macos}
 # YARN
-$ yarn build:native
+$ yarn build:native{all|linux|windows|macos}
 ```
 
-## _run
+## _dev
 
 ```bash
 # NPM
