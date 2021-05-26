@@ -20,6 +20,12 @@
   <img src="https://badgen.net/github/license/yogurt-foundation/playground">
 </p>
 
+<p align="left">
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/yogurt_playground_promo.png" 
+       height="auto" 
+       width="auto">
+</p>
+
 A developer playground for testing and prototyping with Yogurt CSS framework and other micro libraries.
 
 > Version 0.1.3-beta
