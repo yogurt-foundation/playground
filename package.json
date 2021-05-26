@@ -10,7 +10,10 @@
     "serve": "vue-cli-service serve",
     "app": "electron app.js",
     "build:app": "vue-cli-service build",
-    "build:native": "electron-builder -lwm"
+    "build:native:all": "npm run build:app && electron-builder -lwm",
+    "build:native:linux": "npm run build:app && electron-builder -l",
+    "build:native:windows": "npm run build:app && electron-builder -w",
+    "build:native:macos": "npm run build:app && electron-builder -m"
   },
   "dependencies": {
     "core-js": "^2.6.5",
