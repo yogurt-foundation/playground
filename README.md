@@ -21,7 +21,7 @@
 </p>
 
 <p align="left">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/yogurt_playground_promo.png" 
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/yogurt_playground_promo.jpg" 
        height="auto" 
        width="auto">
 </p>
