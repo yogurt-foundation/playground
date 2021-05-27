@@ -28,7 +28,7 @@
 
 A developer playground for testing and prototyping with Yogurt CSS framework and other micro libraries.
 
-> Version 0.1.3-beta
+> Version 0.1.4-beta
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_01.png"
