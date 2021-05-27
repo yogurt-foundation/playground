@@ -332,10 +332,7 @@
           // `ctrl+alt+d` to reset stored data
           if (e.key === "d" && (e.altKey || e.metaKey)) {
             e.preventDefault();
-            // this.storeData("data-html", "");
-            // this.storeData("data-css", "");
-            // this.storeData("data-js", "");
-            localStorage.clear();
+            localStorage.clear(); // force page reload, sorry
             window.location.reload();
           }
         };
