@@ -47,8 +47,6 @@
 
   let js = "";
 
-  let template = '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><style>' + css + "</style></head><body>ddddddddd" + html + "</body><script>" + js + "<\\/script></html>";
-
   let dataSaveEnabled = localStorage.getItem("dataSaveEnabled");
   if(dataSaveEnabled === "yes") {
     console.log("(yogurt) has saved data, use existing one.");
