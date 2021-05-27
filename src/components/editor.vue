@@ -16,7 +16,7 @@
       codes: {
         type: String,
         default: function () {
-          return "";
+          return "<y></y>";
         },
       },
       language: {
@@ -78,6 +78,10 @@
           self.$emit("onCodeChange", self.monacoEditor.getValue(), event);
         });
         window.addEventListener("resize", function () {
+          self.initEditor();
+        });
+        let app = document.getElementById('app');
+        app.addEventListener('onresize', function(){
           self.initEditor();
         });
       },
