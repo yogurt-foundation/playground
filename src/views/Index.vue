@@ -214,6 +214,7 @@
     (?) Right-Click for more options\n\
     (?) Ctrl+Alt+M to switch windows\n\
     (?) Ctrl+Alt+/ to run code\n\
+    (?) Ctrl+Alt+D to reset auto-saved data\n\
   --> \n\n\
   <body class="font-default antialiased text-gray-600 (dark)text-gray-300 bg-gray-100 (dark)bg-gray-800">\n\n\
     <y class="h-screen (xs)px-4 flex flex-col justify-center items-center">\n\
@@ -253,10 +254,6 @@
         componentKey: 0,
         // defaultPreviewerbreakpoint: this.loadData("data-breakpoint"), // TODO: add breakpoint for previewer
       };
-    },
-    beforeMount() {
-      this.storeData("data-html", this.htmlCodes);
-      this.storeData("data-css", this.cssCodes);
     },
     mounted() {
       this.shortcutKeysEvents();
@@ -335,10 +332,11 @@
           // `ctrl+alt+d` to reset stored data
           if (e.key === "d" && (e.altKey || e.metaKey)) {
             e.preventDefault();
-            this.storeData("data-html", "");
-            this.storeData("data-css", "");
-            this.storeData("data-js", "");
-            this.forceRerender();
+            // this.storeData("data-html", "");
+            // this.storeData("data-css", "");
+            // this.storeData("data-js", "");
+            localStorage.clear();
+            window.location.reload();
           }
         };
         document.addEventListener("keydown", this.shortcutKeys.bind(this));
