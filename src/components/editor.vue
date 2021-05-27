@@ -16,7 +16,7 @@
       codes: {
         type: String,
         default: function () {
-          return "<y></y>";
+          return "";
         },
       },
       language: {
