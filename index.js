@@ -52,7 +52,7 @@ createWindow = () => {
       javascript: true,
       plugins: true,
       zoomFactor: 1,
-      nodeIntegration: false,
+      nodeIntegration: true,
     },
   });
 
@@ -86,7 +86,7 @@ createWindow = () => {
               buttons: ['Close'],
               defaultId: 2,
               title: 'About',
-              message: 'Yogurt Playground Desktop App (build v0.1.3-beta)',
+              message: 'Yogurt Playground Desktop App (build v0.1.4-beta)',
               detail:
                 'A developer playground IDE for testing and prototyping with Yogurt CSS framework.\n\n(https://github.com/yogurt-foundation/playground)',
             });
