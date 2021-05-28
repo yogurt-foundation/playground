@@ -80,6 +80,10 @@
         window.addEventListener("resize", function () {
           self.initEditor();
         });
+        let app = document.getElementById('app');
+        app.addEventListener('onresize', function(){
+          self.initEditor();
+        });
       },
     },
   };
