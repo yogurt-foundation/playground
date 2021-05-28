@@ -31,29 +31,6 @@
           return "vs-dark";
         },
       },
-      editorOptions: {
-        type: Object,
-        default: function () {
-          return {
-            selectOnLineNumbers: true,
-            roundedSelection: false,
-            readOnly: false,
-            cursorStyle: "line",
-            lineNumbers: "on",
-            automaticLayout: true,
-            glyphMargin: true,
-            useTabStops: false,
-            fontSize: 14,
-            autoIndent: true,
-            renderWhitespace: "all",
-            wordWrap: "on",
-            minimap: {
-              enabled: false,
-            },
-            autoClosingBrackets: "always",
-          };
-        },
-      },
     },
     data() {
       return {
@@ -69,9 +46,38 @@
         self.$refs.container.innerHTML = "";
         self.monacoEditor = editor.create(self.$refs.container, {
           value: self.codesCopy || self.codes,
+          // settings
           language: self.language,
           theme: self.theme,
-          editorOptions: self.editorOptions,
+          accessibilitySupport: "auto",
+          autoIndent: true,
+          automaticLayout: true,
+          codeLens: true,
+          colorDecorators: true,
+          cursorStyle: "line",
+          disableLayerHinting: true,
+          emptySelectionClipboard: false,
+          enableSplitViewResizing: false,
+          folding: true,
+          foldingHighlight: true,
+          foldingStrategy: "indentation",
+          fontSize: 14,
+          glyphMargin: true,
+          lineNumbers: "on",
+          lineNumbersMinChars: 5,
+          minimap: { enabled: false },
+          quickSuggestionsDelay: 500,
+          readOnly: false,
+          renderWhitespace: true,
+          roundedSelection: true,
+          scrollBeyondLastLine: false,
+          selectionClipboard: false,
+          selectOnLineNumbers: true,
+          showFoldingControls: "always",
+          useTabStops: false,
+          wordWrap: "on",
+          wordWrapMinified: true,
+          wrappingIndent: "indent",
         });
         self.monacoEditor.onDidChangeModelContent(function (event) {
           self.codesCopy = self.monacoEditor.getValue();
