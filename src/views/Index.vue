@@ -102,20 +102,20 @@
       v-model="activeName"
       v-bind:class="[
         isActive
-          ? 'z-20 relative flex-1 h-screen animation fade-in duration-300'
+          ? 'z-20 relative h-screen w-full animation fade-in duration-300'
           : 'flex-initial invisible'
       ]"
     >
 
       <!-- status -->
       <y
-        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-white text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-orange-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
+        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-charcoal-100 text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-orange-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
         v-if="workingStatus">
           Working
       </y>
 
       <y
-        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-white text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-red-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
+        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-charcoal-100 text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-red-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
         v-if="dataStatus">
           Reseting
       </y>
@@ -137,24 +137,36 @@
     <y
       v-bind:class="[
         isActive
-          ? 'z-20 w-0 invisible'
-          : 'z-20 w-auto h-full visible'
+          ? 'z-20 w-auto h-screen'
+          : 'z-20 w-auto h-full'
       ]"
       title="Drag Responsive Window"
       id="screenResizableDragger"
     >
       <y
-        class="(group) py-4 h-full flex flex-col justify-start items-center filter saturate-4"
+        v-bind:class="[
+          isActive
+            ? 'h-full'
+            : '(group) py-4 h-full flex flex-col justify-start items-center filter saturate-4'
+        ]"
       >
         <y
           v-bind:class="[
             isActive
-              ? 'invisible'
-              : '-mr-8 transform (hover)-translate-x-8 flex justify-center items-center py-2 w-10 h-32 bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-300 ease-in-out shadow-dreamy-lg rounded-l-md select-none',
+              ? 'w-2 h-full bg-black-700 (hover)bg-orange-600 filter saturate-4 cursor-col-resize select-none'
+              : 'z-30 -mr-8 transform (hover)-translate-x-8 flex justify-center items-center py-2 w-10 h-32 bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-300 ease-in-out shadow-dreamy-lg rounded-l-lg select-none',
           ]"
         >
-          <y class="my-1 mx-1 w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
-          <y class="my-1 mx-px w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
+          <y
+            v-bind:class="[
+              isActive
+                ? 'hidden'
+                : 'z-40 block',
+            ]"
+          >
+            <y class="my-1 mx-1 w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
+            <y class="my-1 mx-px w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
+          </y>
         </y>
       </y>
     </y>
@@ -163,15 +175,15 @@
     <y
       v-bind:class="[
         isActive
-          ? 'z-20 flex justify-center items-center h-screen animation fade-in duration-500'
-          : 'z-20 flex-1 h-screen bg-white'
+          ? 'z-20 flex-1 h-screen animation fade-in duration-300'
+          : 'z-20 flex-1 h-screen animation fade-in duration-200'
       ]"
     >
       <y
         v-bind:class="[
           isActive
-            ? 'breakpoint-480 mobile-h-screen-540 bg-white'
-            : 'z-20 flex-1 h-screen bg-white breakpoint-320'
+            ? 'z-20 h-screen bg-white rounded-lg breakpoint-320'
+            : 'z-20 flex-1 h-screen bg-white rounded-lg breakpoint-320'
         ]"
         id="result"
       ></y>
@@ -225,8 +237,6 @@
         </span>\n\
       </y>\n\
     </y>\n\n\
-    <!-- Display Screen Size -->\n\
-    <!-- <y debug="screen"></y> -->\n\n\
   </body>',
         jsCodes: "",
         cssCodes:
@@ -261,7 +271,7 @@
       runCode() {
         this.workingStatus = true;
 
-        let t = '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><style>' + this.loadCssCodes + "</style></head><body>" + this.loadHtmlCodes + "</body><script>" + this.loadJsCodes + "<\\/script></html>";
+        let t = '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><style>' + this.loadCssCodes + "</style></head><body>" + this.loadHtmlCodes + '<y debug="screen"></y></body><script>' + this.loadJsCodes + "<\\/script></html>";
 
         let result = document.getElementById("result");
         result.innerHTML = "";
@@ -357,7 +367,23 @@
   .breakpoint-768 {
     min-width: 768px;
   }
-  .mobile-h-screen-540 {
-    height: 540px;
+  .breakpoint-1024 {
+    min-width: 1024px;
+  }
+  .breakpoint-1280 {
+    min-width: 1280px;
+  }
+  .breakpoint-1920 {
+    min-width: 1920px;
+  }
+  .breakpoint-3840 {
+    min-width: 3840px;
+  }
+  .breakpoint-7680 {
+    min-width: 7680px;
+  }
+  .breakpoint-x {
+    min-width: 320px;
+    max-width: 100%;
   }
 </style>
