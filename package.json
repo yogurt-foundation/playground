@@ -68,5 +68,24 @@
       "deb"
     ],
     "icon": "build/icons/"
+  },
+  "windows": {
+    "target": [
+      "portable",
+      "nsis"
+    ],
+    "icon": "build/icons/"
+  },
+  "mac": {
+    "target": [
+      "dmg"
+    ],
+    "icon": "build/icons/"
+  },
+  "build": {
+    "appId": "yogurt.playground",
+    "mac": {
+      "category": "yogurt.playground.dev.ide"
+    }
   }
 }
