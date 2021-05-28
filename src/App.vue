@@ -47,15 +47,14 @@
 
   let js = "";
 
-  let dataSaveEnabled = localStorage.getItem("dataSaveEnabled");
-  if(dataSaveEnabled === "yes") {
+  if(localStorage.dataSaveEnabled === "yes") {
     console.log("(yogurt) has saved data, use existing one.");
   } else {
     console.log("(yogurt) no saved data, create new template.");
-    localStorage.setItem("dataSaveEnabled", "yes");
-    localStorage.setItem("data-html", html);
-    localStorage.setItem("data-css", css);
-    localStorage.setItem("data-js", js);
+    localStorage.dataSaveEnabled = "yes";
+    localStorage.dataHTML = html;
+    localStorage.dataCSS =  css;
+    localStorage.dataJS =  js;
   }
 </script>
 

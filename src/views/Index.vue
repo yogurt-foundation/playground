@@ -21,26 +21,6 @@
       </y>
     </y>
 
-    <!-- Breakpoints -->
-    <!-- <y class="z-50 absolute top-5 left-5 text-gray-800 bg-white p-2">
-      {{currentScreen}}
-      <y id="breakpoint-320"
-         v-bind:class="{'active' :currentScreen === 'breakpoint-320' }"
-         v-on:click="switchScreen('breakpoint-320')">
-         XS
-      </y>
-      <y id="breakpoint-640"
-         v-bind:class="{'active' :currentScreen === 'breakpoint-640' }"
-         v-on:click="switchScreen('breakpoint-640')">
-         SM
-      </y>
-      <y id="breakpoint-768"
-         v-bind:class="{'active' :currentScreen === 'breakpoint-768' }"
-         v-on:click="switchScreen('breakpoint-768')">
-         MD
-      </y>
-    </y> -->
-
     <!-- Switch -->
     <y
       class="z-50"
@@ -126,16 +106,24 @@
           : 'flex-initial invisible'
       ]"
     >
+
+      <!-- status -->
+      <y
+        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-white text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-orange-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
+        v-if="workingStatus">
+          Working
+      </y>
+
+      <y
+        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-white text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-red-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
+        v-if="dataStatus">
+          Reseting
+      </y>
+
       <y
         name="html"
         :lazy="true"
         :key="componentKey">
-
-        <y
-          class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-white text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-orange-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
-          v-if="workingStatus">
-            Working
-        </y>
 
         <MyEditor
           :language="'html'"
@@ -202,7 +190,6 @@
     },
     data() {
       return {
-        workingStatus: false,
         activeName: "html",
         htmlCodes:
           '<!-- \n\
@@ -244,15 +231,21 @@
         jsCodes: "",
         cssCodes:
           "@import 'assets/css/yogurt-1.1.6_solidcore.min.css';[debug=screen]{font-size:13px;color:#000;background-color:#d3d3d3;opacity:.3;border-radius:3px;margin:4px;font-weight:700}@media (min-width:320px){[debug=screen]::after{content:'(xs) 320px'}}@media (min-width:480px){[debug=screen]::after{content:'(sm) 480px'}}@media (min-width:640px){[debug=screen]::after{content:'(sm) 640px'}}@media (min-width:768px){[debug=screen]::after{content:'(md) 768px'}}@media (min-width:1024px){[debug=screen]::after{content:'(lg) 1024px'}}@media (min-width:1280px){[debug=screen]::after{content:'(xl) 1280px'}}@media (min-width:1920px){[debug=screen]::after{content:'(2xl) 1920px'}}@media (min-width:2560px){[debug=screen]::after{content:'(3k) 2560px'}}@media (min-width:3840px){[debug=screen]::after{content:'(4k) 3840px'}}@media (min-width:5120px){[debug=screen]::after{content:'(5k) 5120px'}}@media (min-width:5760px){[debug=screen]::after{content:'(6k) 5760px'}}@media (min-width:7000px){[debug=screen]::after{content:'(7k) 7000px'}}@media (min-width:7680px){[debug=screen]::after{content:'(8k) 7680px'}}::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background-color:transparent}::-webkit-scrollbar-thumb{background-color:#d6dee1;border-radius:20px;border:0px solid transparent;background-clip:content-box}::-webkit-scrollbar-thumb:hover{background-color:#a8bbbf}",
+        ///
         htmlEditor: null,
         jsEditor: null,
         cssEditor: null,
-        isActive: true,
-        loadHtmlCodes: localStorage.getItem("data-html"),
-        loadCssCodes: localStorage.getItem("data-css"),
-        loadJsCodes: localStorage.getItem("data-js"),
+        ///
         componentKey: 0,
-        // defaultPreviewerbreakpoint: this.loadData("data-breakpoint"), // TODO: add breakpoint for previewer
+        ///
+        isActive: true,
+        ///
+        loadHtmlCodes: localStorage.dataHTML,
+        loadCssCodes: localStorage.dataCSS,
+        loadJsCodes: localStorage.dataJS,
+        ///
+        workingStatus: false,
+        dataStatus: false,
       };
     },
     mounted() {
@@ -287,27 +280,18 @@
       },
       htmlOnCodeChange(value) {
         this.loadHtmlCodes = value;
-        this.storeData("data-html", value);
+        localStorage.dataHTML = value;
       },
       cssOnCodeChange(value) {
         this.loadCssCodes = value;
-        this.storeData("data-css", value);
+        localStorage.dataCSS = value;
       },
       javascriptOnCodeChange(value) {
         this.loadJsCodes = value;
-        this.storeData("data-js", value);
+        localStorage.dataJS = value;
       },
       toggleWindowModes: function () {
         this.isActive = !this.isActive;
-      },
-      storeData(key, value) {
-        localStorage.setItem(key, value);
-      },
-      loadData(key) {
-        localStorage.getItem(key);
-      },
-      deleteData(key) {
-        localStorage.removeItem(key);
       },
       shortcutKeysEvents: function () {
         this.shortcutKeys = function (e) {
@@ -324,16 +308,20 @@
           // `ctrl+alt+t` to load template data
           if (e.key === "p" && (e.altKey || e.metaKey)) {
             e.preventDefault();
-            this.storeData("data-html", this.htmlCodes);
-            this.storeData("data-css", this.cssCodes);
-            this.storeData("data-js", this.jsCodes);
+            localStorage.dataHTML = this.htmlCodes;
+            localStorage.dataCSS = this.cssCodes;
+            localStorage.dataJS = this.jsCodes;
             this.forceRerender();
           }
           // `ctrl+alt+d` to reset stored data
           if (e.key === "d" && (e.altKey || e.metaKey)) {
             e.preventDefault();
-            localStorage.clear(); // force page reload, sorry
-            window.location.reload();
+            this.dataStatus = true;
+            setTimeout(() => {
+              localStorage.clear();
+              window.location.reload();
+              this.dataStatus = false;
+            }, 3000);
           }
         };
         document.addEventListener("keydown", this.shortcutKeys.bind(this));
