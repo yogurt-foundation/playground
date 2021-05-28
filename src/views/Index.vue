@@ -115,7 +115,7 @@
       </y>
 
       <y
-        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-charcoal-100 text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-red-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
+        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-white text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-red-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
         v-if="dataStatus">
           Reseting
       </y>
