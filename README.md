@@ -21,7 +21,7 @@
 </p>
 
 <p align="left">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/yogurt_playground_promo.jpg"
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/yogurt_playground_promo.jpg"
        height="auto"
        width="auto">
 </p>
@@ -31,13 +31,13 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
 > Version 0.1.4-beta
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_03.png"
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_03.png"
        height="auto"
        width="auto">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_04.png"
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_04.png"
        height="auto"
        width="auto">
 </p>
