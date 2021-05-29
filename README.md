@@ -31,13 +31,13 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
 > Version 0.1.4-beta
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_01.png"
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_03.png"
        height="auto"
        width="auto">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_02.png"
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.3/assets/screenshot_04.png"
        height="auto"
        width="auto">
 </p>
