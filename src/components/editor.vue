@@ -1,6 +1,6 @@
 <template>
   <y
-    class="h-screen pattern ripple-lg text-charcoal-100 bg-charcoal-500"
+    class="h-screen"
     ref="container"
     id="container"
   >
@@ -28,7 +28,7 @@
       theme: {
         type: String,
         default: function () {
-          return "vs-dark";
+          return "vs"; // default light theme
         },
       },
     },
@@ -64,13 +64,13 @@
           fontSize: 14,
           glyphMargin: true,
           lineNumbers: "on",
-          lineNumbersMinChars: 5,
+          lineNumbersMinChars: 2,
           minimap: { enabled: false },
           quickSuggestionsDelay: 500,
           readOnly: false,
           renderWhitespace: true,
           roundedSelection: true,
-          scrollBeyondLastLine: false,
+          scrollBeyondLastLine: true,
           selectionClipboard: false,
           selectOnLineNumbers: true,
           showFoldingControls: "always",
