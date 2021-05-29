@@ -1,11 +1,5 @@
 <template>
-  <y
-    v-bind:class="[
-      isActive
-        ? 'relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-500'
-        : 'relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-500 overflow-hidden',
-    ]"
-  >
+  <y v-bind:class="bgCoverTheme">
 
     <!-- Logo -->
     <y
@@ -14,86 +8,31 @@
       <y
         class="ml-24">
         <img
-          class="h-auto w-64 object-cover object-center overflow-hidden invert-1 opacity-75 select-none"
+          v-bind:class="bgLogoTheme"
           src="assets/image/logo_full.svg"
           title="Yogurt"
         />
       </y>
     </y>
 
-    <!-- Switch -->
-    <y
-      class="z-50"
-      @click="toggleWindowModes()">
-      <!-- Editor -->
-      <y
-        v-bind:class="[
-          isActive
-            ? 'z-50 absolute bottom-5 left-5'
-            : 'hidden'
-        ]"
-      >
-        <y
-          class="(group) flex justify-center items-center px-3 py-2 bg-charcoal-800 (hover)bg-orange-700 (active)bg-orange-800 border-4 border-transparent (hover)border-orange-600 shadow-dreamy-lg filter saturate-4 rounded-lg transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none"
-          title="Preview (Ctrl+Alt+M)"
-        >
-          <img
-            class="invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-6 h-6 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110"
-            src="assets/image/preview.svg"
-          />
-          <y
-            class="ml-2 text-sm font-semibold text-gray-100 (group-hover)text-black-900 opacity-50 (group-hover)opacity-100"
-          >
-            Preview
-          </y>
-        </y>
-      </y>
-      <!-- Preview -->
-      <y
-        v-bind:class="[
-          isActive
-            ? 'hidden'
-            : 'z-50 absolute bottom-5 left-5'
-        ]"
-      >
-        <y
-          class="(group) flex justify-center items-center px-3 py-2 bg-charcoal-800 (hover)bg-orange-700 (active)bg-orange-800 border-4 border-transparent (hover)border-orange-600 shadow-dreamy-lg filter saturate-4 rounded-lg transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none"
-          title="Editor (Ctrl+Alt+M)"
-        >
-          <img
-            class="invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-6 h-6 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110"
-            src="assets/image/editor.svg"
-          />
-          <y
-            class="ml-2 text-sm font-semibold text-gray-100 (group-hover)text-black-900 opacity-50 (group-hover)opacity-100"
-          >
-            Editor
-          </y>
-        </y>
-      </y>
-    </y>
-    <!-- back to Editor -->
+    <!-- back to Editor from Previwer -->
     <y
       v-bind:class="[
         isActive
-          ? 'z-50 absolute bottom-5 left-32 ml-6'
-          : 'hidden'
+          ? 'hidden'
+          : 'z-50 absolute bottom-5 left-6 (group) flex justify-center items-center px-3 py-2 bg-charcoal-800 (hover)bg-orange-700 (active)bg-orange-800 border-4 border-transparent (hover)border-orange-600 shadow-dreamy-lg filter saturate-4 rounded-lg transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none'
       ]"
+      @click="toggleModes"
+      title="Editor (Ctrl+Alt+M)"
     >
+      <img
+        class="invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-6 h-6 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110"
+        src="assets/image/editor.svg"
+      />
       <y
-        class="(group) flex justify-center items-center px-3 py-2 bg-charcoal-800 (hover)bg-orange-700 (active)bg-orange-800 border-4 border-transparent (hover)border-orange-600 shadow-dreamy-lg filter saturate-4 rounded-lg transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none"
-        title="Run Code (F2 or Ctrl+Alt+/)"
-        @click="renderCode"
+        class="ml-2 text-sm font-semibold text-gray-100 (group-hover)text-black-900 opacity-50 (group-hover)opacity-100"
       >
-        <img
-          class="invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-6 h-6 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110"
-          src="assets/image/editor.svg"
-        />
-        <y
-          class="ml-2 text-sm font-semibold text-gray-100 (group-hover)text-black-900 opacity-50 (group-hover)opacity-100"
-        >
-          Run
-        </y>
+        Editor
       </y>
     </y>
 
@@ -103,21 +42,89 @@
       v-bind:class="[
         isActive
           ? 'z-20 relative h-screen w-full animation fade-in duration-300'
-          : 'flex-initial invisible'
+          : 'flex-initial invisible animation fade-out duration-300'
       ]"
     >
 
+      <!-- menu -->
+      <y
+        v-bind:class="[
+          isActive
+            ? 'z-50 breakpoint-540 menuBarTheme'
+            : 'hidden'
+        ]"
+      >
+        <y class="p-1 flex justify-between items-center">
+
+          <!-- logo -->
+          <y class="px-2 animation roll-in-left duration-800">
+            <img
+              v-bind:class="logoTheme"
+              src="assets/image/logo_full.svg"
+              alt="Yogurt"
+            >
+          </y>
+
+          <!-- Switch -->
+          <y class="px-2 flex flex-gap-3 justify-end items-center">
+
+            <!-- Theme -->
+            <y
+              class="flex justify-center items-center px-2 py-2 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none"
+              title="Dark or Light Theme"
+              @click="changeEditorTheme"
+            >
+              <y v-bind:class="themeButton"></y>
+            </y>
+
+            <!-- Preview -->
+            <y
+              v-bind:class="mainButtonTheme"
+              title="Preview (Ctrl+Alt+M)"
+              @click="toggleModes()"
+            >
+              <img
+                v-bind:class="mainButtonIconTheme"
+                src="assets/image/preview.svg"
+              />
+              <y
+                class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100"
+              >
+                Preview
+              </y>
+            </y>
+
+            <!-- Run -->
+            <y
+              v-bind:class="mainButtonTheme"
+              title="Run Code (F2 or Ctrl+Alt+/)"
+              @click="renderCode"
+            >
+              <img
+                v-bind:class="mainButtonIconTheme"
+                src="assets/image/editor.svg"
+              />
+              <y
+                class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100"
+              >
+                Run
+              </y>
+            </y>
+
+          </y>
+
+        </y>
+      </y>
+
       <!-- status -->
       <y
-        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-charcoal-100 text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-orange-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
+        v-bind:class="preloaderTheme"
         v-if="workingStatus">
-          Working
       </y>
 
       <y
-        class="z-50 absolute bottom-5 right-6 w-16 h-6 flex justify-center items-center text-sm text-white text-shadow shadow-x-0 shadow-y-0 shadow-blur-2 bg-red-600 filter saturate-4 animation fade-in duration-500 rounded shadow-dreamy-sm"
-        v-if="dataStatus">
-          Reseting
+        v-bind:class="preloaderTheme"
+        v-if="resetStatus">
       </y>
 
       <y
@@ -128,46 +135,37 @@
         <MyEditor
           :language="'html'"
           :codes="loadHtmlCodes"
+          :theme="editorTheme"
           @onCodeChange="htmlOnCodeChange"
         />
       </y>
     </y>
 
-    <!-- Responsive Drag Bar -->
+    <!-- Resizable Window Bar -->
     <y
       v-bind:class="[
         isActive
           ? 'z-20 w-auto h-screen'
           : 'z-20 w-auto h-full'
       ]"
-      title="Drag Responsive Window"
-      id="screenResizableDragger"
+      title="Resize Window"
+      id="resizableWindowBar"
     >
       <y
         v-bind:class="[
           isActive
             ? 'h-full'
-            : '(group) py-4 h-full flex flex-col justify-start items-center filter saturate-4'
+            : '(group) h-full flex flex-col justify-start items-center filter saturate-4'
         ]"
       >
         <y
           v-bind:class="[
             isActive
-              ? 'w-2 h-full bg-black-700 (hover)bg-orange-600 filter saturate-4 cursor-col-resize select-none'
-              : 'z-30 -mr-8 transform (hover)-translate-x-8 flex justify-center items-center py-2 w-10 h-32 bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-300 ease-in-out shadow-dreamy-lg rounded-l-lg select-none',
+              ? 'w-1 h-full bg-gray-400 (hover)bg-orange-600 (active)bg-orange-600 (focus)bg-orange-600 filter saturate-4 cursor-col-resize select-none transition duration-200 ease-in-out'
+              : 'z-30 -mr-8 transform (hover)-translate-x-8 flex justify-center items-center w-10 h-screen bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-200 ease-in-out shadow-dreamy-lg rounded-l-lg select-none',
           ]"
-        >
-          <y
-            v-bind:class="[
-              isActive
-                ? 'hidden'
-                : 'z-40 block',
-            ]"
-          >
-            <y class="my-1 mx-1 w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
-            <y class="my-1 mx-px w-1 h-full bg-orange-700 (group-hover)bg-orange-400 rounded-full"></y>
-          </y>
-        </y>
+        ></y>
+
       </y>
     </y>
 
@@ -182,8 +180,8 @@
       <y
         v-bind:class="[
           isActive
-            ? 'z-20 h-screen bg-white rounded-lg breakpoint-320'
-            : 'z-20 flex-1 h-screen bg-white rounded-lg breakpoint-320'
+            ? 'z-20 h-screen bg-white rounded-lg breakpoint-320 shadow-lg'
+            : 'z-20 flex-1 h-screen bg-white rounded-lg breakpoint-320 shadow-lg'
         ]"
         id="result"
       ></y>
@@ -205,16 +203,16 @@
         activeName: "html",
         htmlCodes:
           '<!-- \n\
-    Welcome to Yogurt Playground!\n\n\
-    Here you can testing or prototyping complex or simple UI online.\n\n\
-    Core Framework: v1.1.6-beta\n\
-    Playground: v0.1.4-beta\n\n\
-    (?) F1 for Command Palette\n\
-    (?) Right-Click for more options\n\
-    (?) Ctrl+Alt+M to switch windows\n\
-    (?) Ctrl+Alt+/ to run code\n\
-    (?) Ctrl+Alt+D to reset auto-saved data\n\
-  --> \n\n\
+  Welcome to Yogurt Playground!\n\n\
+  Here you can testing or prototyping complex or simple UI online.\n\n\
+  Core Framework: v1.1.6-beta\n\
+  Playground: v0.1.4-beta\n\n\
+  (?) F1 for Command Palette\n\
+  (?) Right-Click for more options\n\
+  (?) Ctrl+Alt+M to switch windows\n\
+  (?) Ctrl+Alt+/ to run code\n\
+  (?) Ctrl+Alt+D to reset auto-saved data\n\
+--> \n\n\
   <body class="font-default antialiased text-gray-600 (dark)text-gray-300 bg-gray-100 (dark)bg-gray-800">\n\n\
     <y class="h-screen (xs)px-4 flex flex-col justify-center items-center">\n\
       <y class="pb-10 text-2xl animation fade-in-up delay-2">\n\
@@ -255,7 +253,19 @@
         loadJsCodes: localStorage.dataJS,
         ///
         workingStatus: false,
-        dataStatus: false,
+        resetStatus: false,
+        ///
+        editorTheme: localStorage.dataTheme,
+        bgCoverTheme: localStorage.dataBgTheme,
+        ///
+        menubarTheme: localStorage.dataMenuBarTheme,
+        themeButton: localStorage.dataButtonTheme,
+        mainButtonIconTheme: localStorage.dataMainButtonIconTheme,
+        mainButtonTheme: localStorage.dataMainButtonTheme,
+        logoTheme: localStorage.dataLogoTheme,
+        bgLogoTheme: localStorage.dataBgLogoTheme,
+        ///
+        preloaderTheme: localStorage.dataPreloaderTheme,
       };
     },
     mounted() {
@@ -300,7 +310,7 @@
         this.loadJsCodes = value;
         localStorage.dataJS = value;
       },
-      toggleWindowModes: function () {
+      toggleModes: function () {
         this.isActive = !this.isActive;
       },
       shortcutKeysEvents: function () {
@@ -313,7 +323,7 @@
           // `ctrl+alt+m` to switch between editor or previewer
           if (e.key === "m" && (e.altKey || e.metaKey)) {
             e.preventDefault();
-            this.toggleWindowModes();
+            this.toggleModes();
           }
           // `ctrl+alt+t` to load template data
           if (e.key === "p" && (e.altKey || e.metaKey)) {
@@ -326,19 +336,18 @@
           // `ctrl+alt+d` to reset stored data
           if (e.key === "d" && (e.altKey || e.metaKey)) {
             e.preventDefault();
-            this.dataStatus = true;
+            this.resetStatus = true;
             setTimeout(() => {
               localStorage.clear();
               window.location.reload();
-              this.dataStatus = false;
-            }, 3000);
+              this.resetStatus = false;
+            }, 1000);
           }
         };
         document.addEventListener("keydown", this.shortcutKeys.bind(this));
       },
       forceRerender() {
         this.componentKey += 1
-        this.renderCode();
       },
       renderCode: function() {
         this.runCode();
@@ -346,6 +355,38 @@
            this.workingStatus = false;
         }, 2000);
       },
+      changeEditorTheme: function() {
+        if (localStorage.dataTheme === "vs") { // light
+          localStorage.dataBgLogoTheme = "invert-1 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
+          ///
+          localStorage.dataLogoTheme = "invert-1 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
+          localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
+          localStorage.dataButtonTheme = "bg-gray-600 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125 rounded-full";
+          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-2 text-gray-400 (hover)text-gray-300 bg-gray-700 (active)bg-gray-300 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+          localStorage.dataMainButtonIconTheme = "invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-1 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
+          ///
+          localStorage.dataTheme = "vs-dark";
+          ///
+          localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-400";
+          ///
+          localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader dark animation fade-in duration-300";
+          window.location.reload();
+        } else if (localStorage.dataTheme === "vs-dark") { // dark
+          localStorage.dataBgLogoTheme = "invert-0 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
+          ///
+          localStorage.dataLogoTheme = "invert-0 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
+          localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
+          localStorage.dataButtonTheme = "bg-gray-900 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125 rounded-full";
+          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-2 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-400 (hover)border-gray-700 (focus)border-gray-700 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+          localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
+          ///
+          localStorage.dataTheme = "vs";
+          ///
+          localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-gray-100 bg-gray-300";
+          localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader light animation fade-in duration-300";
+          window.location.reload();
+        }
+      }
     }
   };
 </script>
@@ -385,5 +426,48 @@
   .breakpoint-x {
     min-width: 320px;
     max-width: 100%;
+  }
+  .preloader {
+    --preloader-theme: transparent;
+    margin: 0 auto;
+    border: 3px solid var(--preloader-theme);
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: cssload-spin 575ms infinite linear;
+    -o-animation: cssload-spin 575ms infinite linear;
+    -ms-animation: cssload-spin 575ms infinite linear;
+    -webkit-animation: cssload-spin 575ms infinite linear;
+    -moz-animation: cssload-spin 575ms infinite linear;
+  }
+  .preloader.light {
+    --preloader-theme: rgb(0, 0, 0);
+  }
+  .preloader.dark {
+    --preloader-theme: rgb(255, 81, 0);
+  }
+  @keyframes cssload-spin {
+    100% {
+      transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes cssload-spin {
+    100% {
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-ms-keyframes cssload-spin {
+    100% {
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes cssload-spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
   }
 </style>
