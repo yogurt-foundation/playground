@@ -1,11 +1,16 @@
 <template>
-  <y id="app">
-    <router-view />
+  <y
+    class="font-default antialiased"
+    id="app">
+      <router-view />
   </y>
 </template>
 
 
 <script>
+  /*
+   * Base Templates
+   */
   let html = '<!-- \n\
   Welcome to Yogurt Playground!\n\n\
   Here you can testing or prototyping complex or simple UI online.\n\n\
@@ -41,81 +46,90 @@
   </y>\n\n\
 </body>';
 
-  let css = "@import 'assets/css/yogurt-1.1.6_solidcore.min.css';[debug=screen]{font-size:13px;color:#000;background-color:#d3d3d3;opacity:.3;border-radius:3px;margin:4px;font-weight:700}@media (min-width:320px){[debug=screen]::after{content:'(xs) 320px'}}@media (min-width:480px){[debug=screen]::after{content:'(sm) 480px'}}@media (min-width:640px){[debug=screen]::after{content:'(sm) 640px'}}@media (min-width:768px){[debug=screen]::after{content:'(md) 768px'}}@media (min-width:1024px){[debug=screen]::after{content:'(lg) 1024px'}}@media (min-width:1280px){[debug=screen]::after{content:'(xl) 1280px'}}@media (min-width:1920px){[debug=screen]::after{content:'(2xl) 1920px'}}@media (min-width:2560px){[debug=screen]::after{content:'(3k) 2560px'}}@media (min-width:3840px){[debug=screen]::after{content:'(4k) 3840px'}}@media (min-width:5120px){[debug=screen]::after{content:'(5k) 5120px'}}@media (min-width:5760px){[debug=screen]::after{content:'(6k) 5760px'}}@media (min-width:7000px){[debug=screen]::after{content:'(7k) 7000px'}}@media (min-width:7680px){[debug=screen]::after{content:'(8k) 7680px'}}::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background-color:transparent}::-webkit-scrollbar-thumb{background-color:#d6dee1;border-radius:20px;border:0px solid transparent;background-clip:content-box}::-webkit-scrollbar-thumb:hover{background-color:#a8bbbf}";
+  let css = "@import 'assets/css/yogurt-1.1.6_solidcore.min.css';[debug=screen]{font-size:13px;color:#000;background-color:#d3d3d3;opacity:.3;border-radius:3px;margin:4px;font-weight:700}@media (min-width:320px){[debug=screen]::after{content:'(xs) 320px'}}@media (min-width:480px){[debug=screen]::after{content:'(sm) 480px'}}@media (min-width:640px){[debug=screen]::after{content:'(sm) 640px'}}@media (min-width:768px){[debug=screen]::after{content:'(md) 768px'}}@media (min-width:1024px){[debug=screen]::after{content:'(lg) 1024px'}}@media (min-width:1280px){[debug=screen]::after{content:'(xl) 1280px'}}@media (min-width:1920px){[debug=screen]::after{content:'(2xl) 1920px'}}@media (min-width:2560px){[debug=screen]::after{content:'(3k) 2560px'}}@media (min-width:3840px){[debug=screen]::after{content:'(4k) 3840px'}}@media (min-width:5120px){[debug=screen]::after{content:'(5k) 5120px'}}@media (min-width:5760px){[debug=screen]::after{content:'(6k) 5760px'}}@media (min-width:7000px){[debug=screen]::after{content:'(7k) 7000px'}}@media (min-width:7680px){[debug=screen]::after{content:'(8k) 7680px'}}";
 
   let js = "";
 
-  // TODO: clean up these mess!
-  if(localStorage.dataSaveEnabled === "yes") {
-    console.log("(yogurt) has saved data, use existing one.");
+  /*
+   * Create Base Templates
+   */
+  if(localStorage.dataSaveEnabled === "true") {
+    // saved data exists, use existing one
   } else {
-    localStorage.dataSaveEnabled = "yes";
+    localStorage.dataSaveEnabled = "true";
     localStorage.dataHTML = html;
     localStorage.dataCSS = css;
     localStorage.dataJS = js;
   }
 
-  if (localStorage.dataThemeEnabled === "yes") {
-    console.log("(yogurt) editor theme is set!");
+  if (localStorage.dataThemeEnabled === "true") {
+    // editor theme is set
   } else {
-    localStorage.dataThemeEnabled = "yes";
+    localStorage.dataThemeEnabled = "true";
     localStorage.dataTheme = "vs";
   }
 
-  if (localStorage.dataBgThemeEnabled === "yes") {
-    console.log("(yogurt) previewer theme is set!");
+  if (localStorage.dataBgThemeEnabled === "true") {
+    // previewer theme is set
   } else {
-    localStorage.dataBgThemeEnabled = "yes";
+    localStorage.dataBgThemeEnabled = "true";
     localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-gray-100 bg-gray-300";
   }
 
-  if (localStorage.dataButtonThemeEnabled === "yes") {
-    console.log("(yogurt) button theme is set!");
+  if (localStorage.dataButtonThemeEnabled === "true") {
+    // buttons theme is set
   } else {
-    localStorage.dataButtonThemeEnabled = "yes";
-    localStorage.dataButtonTheme = "bg-gray-800 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125 rounded-full";
+    localStorage.dataButtonThemeEnabled = "true";
+    localStorage.dataButtonTheme = "opacity-50 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
   }
 
-  if (localStorage.dataMenuBarThemeEnabled === "yes") {
-    console.log("(yogurt) menu bar theme is set!");
+  if (localStorage.dataMenuBarThemeEnabled === "true") {
+    // main menu bar theme is set
   } else {
-    localStorage.dataMenuBarThemeEnabled = "yes";
+    localStorage.dataMenuBarThemeEnabled = "true";
     localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
   }
 
-  if (localStorage.dataLogoThemeEnabled === "yes") {
-    console.log("(yogurt) logo theme is set!");
+  if (localStorage.dataLogoThemeEnabled === "true") {
+    // main logo theme is set
   } else {
-    localStorage.dataLogoThemeEnabled = "yes";
+    localStorage.dataLogoThemeEnabled = "true";
     localStorage.dataLogoTheme = "invert-0 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
   }
 
-  if (localStorage.dataBgLogoThemeEnabled === "yes") {
-    console.log("(yogurt) logo theme is set!");
+  if (localStorage.dataBgLogoThemeEnabled === "true") {
+    // bg logo theme is set
   } else {
-    localStorage.dataBgLogoThemeEnabled = "yes";
+    localStorage.dataBgLogoThemeEnabled = "true";
     localStorage.dataBgLogoTheme = "invert-0 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
   }
 
-  if (localStorage.dataMainButtonThemeEnabled === "yes") {
-    console.log("(yogurt) main button theme is set!");
+  if (localStorage.dataMainButtonThemeEnabled === "true") {
+    // main buttons is set
   } else {
-    localStorage.dataMainButtonThemeEnabled = "yes";
-    localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-2 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-400 (hover)border-gray-700 (focus)border-gray-700 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+    localStorage.dataMainButtonThemeEnabled = "true";
+    localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 (focus)border-gray-500 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
   }
 
-  if (localStorage.dataMainButtonIconThemeEnabled === "yes") {
-    console.log("(yogurt) main button icon theme is set!");
+  if (localStorage.dataMainButtonIconThemeEnabled === "true") {
+    // main button icon theme is set
   } else {
-    localStorage.dataMainButtonIconThemeEnabled = "yes";
+    localStorage.dataMainButtonIconThemeEnabled = "true";
     localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
   }
 
-  if (localStorage.dataPreloaderThemeEnabled === "yes") {
-    console.log("(yogurt) preloader theme is set!");
+  if (localStorage.dataPreloaderThemeEnabled === "true") {
+    // preloader theme is set
   } else {
-    localStorage.dataPreloaderThemeEnabled = "yes";
+    localStorage.dataPreloaderThemeEnabled = "true";
     localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader light animation fade-in duration-300";
+  }
+
+  if (localStorage.dataDocButtonThemeEnabled === "true") {
+    // doc button theme is set
+  } else {
+    localStorage.dataDocButtonThemeEnabled = "true";
+    localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-600 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 rounded";
   }
 </script>
 
@@ -129,10 +143,5 @@
     margin: 0;
     height: 100vh;
     overflow: hidden;
-  }
-  #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 </style>

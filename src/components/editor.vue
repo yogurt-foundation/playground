@@ -1,6 +1,6 @@
 <template>
   <y
-    class="h-screen"
+    class="h-cus-985"
     ref="container"
     id="container"
   >
@@ -61,11 +61,12 @@
           folding: true,
           foldingHighlight: true,
           foldingStrategy: "indentation",
-          fontSize: 14,
+          fontSize: 13,
           glyphMargin: true,
           lineNumbers: "on",
           lineNumbersMinChars: 2,
           minimap: { enabled: false },
+          quickSuggestions: { "other": true, "comments": true, "strings": true },
           quickSuggestionsDelay: 500,
           readOnly: false,
           renderWhitespace: true,
@@ -74,6 +75,7 @@
           selectionClipboard: false,
           selectOnLineNumbers: true,
           showFoldingControls: "always",
+          tabCompletion: "on",
           useTabStops: false,
           wordWrap: "on",
           wordWrapMinified: true,
@@ -95,3 +97,9 @@
   };
 </script>
 
+
+<style scoped>
+  .h-cus-985 { /* fix editor height */
+    height: 98.5vh;
+  }
+</style>

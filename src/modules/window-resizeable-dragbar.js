@@ -1,4 +1,4 @@
-export function splitWindowDragBar() {
+export function windowsResizableDragbar() {
   // Query the element
   const resizer = document.getElementById('resizableWindowBar');
   const leftSide = resizer.previousElementSibling;

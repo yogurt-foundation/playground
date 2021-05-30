@@ -56,13 +56,28 @@
       >
         <y class="p-1 flex justify-between items-center">
 
-          <!-- logo -->
-          <y class="px-2 animation roll-in-left duration-800">
-            <img
-              v-bind:class="logoTheme"
-              src="assets/image/logo_full.svg"
-              alt="Yogurt"
-            >
+          <y class="flex justify-center items-center select-none">
+            <!-- logo -->
+            <y class="px-2 animation roll-in-left duration-800">
+              <img
+                v-bind:class="logoTheme"
+                src="assets/image/logo_full.svg"
+                alt="Yogurt"
+              >
+            </y>
+
+            <!-- docs -->
+            <y class="animation roll-in-left duration-800">
+              <a
+                v-bind:class="docButtonTheme"
+                href="/"
+                target="_blank"
+                rel="noopener"
+                title="Read the Documentation"
+              >
+                Docs
+              </a>
+            </y>
           </y>
 
           <!-- Switch -->
@@ -74,7 +89,10 @@
               title="Dark or Light Theme"
               @click="changeEditorTheme"
             >
-              <y v-bind:class="themeButton"></y>
+              <img
+                v-bind:class="themeButton"
+                src="assets/image/dark-light-mode.svg"
+                alt="Dark/Light Mode">
             </y>
 
             <!-- Preview -->
@@ -161,7 +179,7 @@
         <y
           v-bind:class="[
             isActive
-              ? 'w-1 h-full bg-gray-400 (hover)bg-orange-600 (active)bg-orange-600 (focus)bg-orange-600 filter saturate-4 cursor-col-resize select-none transition duration-200 ease-in-out'
+              ? 'w-1 h-full bg-black-700 (hover)bg-orange-600 (active)bg-orange-600 (focus)bg-orange-600 filter saturate-4 cursor-col-resize select-none transition duration-200 ease-in-out'
               : 'z-30 -mr-8 transform (hover)-translate-x-8 flex justify-center items-center w-10 h-screen bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-200 ease-in-out shadow-dreamy-lg rounded-l-lg select-none',
           ]"
         ></y>
@@ -180,8 +198,8 @@
       <y
         v-bind:class="[
           isActive
-            ? 'z-20 h-screen bg-white rounded-lg breakpoint-320 shadow-lg'
-            : 'z-20 flex-1 h-screen bg-white rounded-lg breakpoint-320 shadow-lg'
+            ? 'z-20 h-screen bg-white breakpoint-320 shadow-lg'
+            : 'z-20 flex-1 h-screen bg-white breakpoint-320 shadow-lg'
         ]"
         id="result"
       ></y>
@@ -192,7 +210,7 @@
 
 <script>
   import MyEditor from "../components/editor";
-  import { splitWindowDragBar } from "../components/dragbar";
+  import { windowsResizableDragbar } from "../modules/window-resizeable-dragbar";
 
   export default {
     components: {
@@ -238,7 +256,7 @@
   </body>',
         jsCodes: "",
         cssCodes:
-          "@import 'assets/css/yogurt-1.1.6_solidcore.min.css';[debug=screen]{font-size:13px;color:#000;background-color:#d3d3d3;opacity:.3;border-radius:3px;margin:4px;font-weight:700}@media (min-width:320px){[debug=screen]::after{content:'(xs) 320px'}}@media (min-width:480px){[debug=screen]::after{content:'(sm) 480px'}}@media (min-width:640px){[debug=screen]::after{content:'(sm) 640px'}}@media (min-width:768px){[debug=screen]::after{content:'(md) 768px'}}@media (min-width:1024px){[debug=screen]::after{content:'(lg) 1024px'}}@media (min-width:1280px){[debug=screen]::after{content:'(xl) 1280px'}}@media (min-width:1920px){[debug=screen]::after{content:'(2xl) 1920px'}}@media (min-width:2560px){[debug=screen]::after{content:'(3k) 2560px'}}@media (min-width:3840px){[debug=screen]::after{content:'(4k) 3840px'}}@media (min-width:5120px){[debug=screen]::after{content:'(5k) 5120px'}}@media (min-width:5760px){[debug=screen]::after{content:'(6k) 5760px'}}@media (min-width:7000px){[debug=screen]::after{content:'(7k) 7000px'}}@media (min-width:7680px){[debug=screen]::after{content:'(8k) 7680px'}}::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background-color:transparent}::-webkit-scrollbar-thumb{background-color:#d6dee1;border-radius:20px;border:0px solid transparent;background-clip:content-box}::-webkit-scrollbar-thumb:hover{background-color:#a8bbbf}",
+          "@import 'assets/css/yogurt-1.1.6_solidcore.min.css';[debug=screen]{font-size:13px;color:#000;background-color:#d3d3d3;opacity:.3;border-radius:3px;margin:4px;font-weight:700}@media (min-width:320px){[debug=screen]::after{content:'(xs) 320px'}}@media (min-width:480px){[debug=screen]::after{content:'(sm) 480px'}}@media (min-width:640px){[debug=screen]::after{content:'(sm) 640px'}}@media (min-width:768px){[debug=screen]::after{content:'(md) 768px'}}@media (min-width:1024px){[debug=screen]::after{content:'(lg) 1024px'}}@media (min-width:1280px){[debug=screen]::after{content:'(xl) 1280px'}}@media (min-width:1920px){[debug=screen]::after{content:'(2xl) 1920px'}}@media (min-width:2560px){[debug=screen]::after{content:'(3k) 2560px'}}@media (min-width:3840px){[debug=screen]::after{content:'(4k) 3840px'}}@media (min-width:5120px){[debug=screen]::after{content:'(5k) 5120px'}}@media (min-width:5760px){[debug=screen]::after{content:'(6k) 5760px'}}@media (min-width:7000px){[debug=screen]::after{content:'(7k) 7000px'}}@media (min-width:7680px){[debug=screen]::after{content:'(8k) 7680px'}}",
         ///
         htmlEditor: null,
         jsEditor: null,
@@ -259,6 +277,7 @@
         bgCoverTheme: localStorage.dataBgTheme,
         ///
         menubarTheme: localStorage.dataMenuBarTheme,
+        docButtonTheme: localStorage.dataDocButtonTheme,
         themeButton: localStorage.dataButtonTheme,
         mainButtonIconTheme: localStorage.dataMainButtonIconTheme,
         mainButtonTheme: localStorage.dataMainButtonTheme,
@@ -272,7 +291,7 @@
       this.shortcutKeysEvents();
       this.renderCode();
 
-      splitWindowDragBar();
+      windowsResizableDragbar();
     },
     beforeDestroy() {
       document.removeEventListener("keydown", this.shortcutKeys);
@@ -357,30 +376,35 @@
       },
       changeEditorTheme: function() {
         if (localStorage.dataTheme === "vs") { // light
+          ///
+          localStorage.dataTheme = "vs-dark";
+          ///
           localStorage.dataBgLogoTheme = "invert-1 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
           ///
           localStorage.dataLogoTheme = "invert-1 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded";
           localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
-          localStorage.dataButtonTheme = "bg-gray-600 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125 rounded-full";
-          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-2 text-gray-400 (hover)text-gray-300 bg-gray-700 (active)bg-gray-300 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+          localStorage.dataButtonTheme = "invert-1 opacity-50 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
+          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
           localStorage.dataMainButtonIconTheme = "invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-1 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
-          ///
-          localStorage.dataTheme = "vs-dark";
           ///
           localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-400";
           ///
           localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader dark animation fade-in duration-300";
           window.location.reload();
         } else if (localStorage.dataTheme === "vs-dark") { // dark
+          ///
+          localStorage.dataTheme = "vs";
+          ///
           localStorage.dataBgLogoTheme = "invert-0 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
           ///
           localStorage.dataLogoTheme = "invert-0 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-600 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 rounded";
           localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
-          localStorage.dataButtonTheme = "bg-gray-900 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125 rounded-full";
-          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-2 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-400 (hover)border-gray-700 (focus)border-gray-700 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center w-8 h-4 border border-gray-300";
+          localStorage.dataButtonTheme = "opacity-50 text-gray-200 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
+          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 (focus)border-gray-500 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
           localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
-          ///
-          localStorage.dataTheme = "vs";
           ///
           localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-gray-100 bg-gray-300";
           localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader light animation fade-in duration-300";
