@@ -31,6 +31,18 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
 > Version 0.1.4-beta
 
 <p align="center">
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_01.png"
+       height="auto"
+       width="auto">
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_02.png"
+       height="auto"
+       width="auto">
+</p>
+
+<p align="center">
   <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_03.png"
        height="auto"
        width="auto">
@@ -41,6 +53,10 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
        height="auto"
        width="auto">
 </p>
+
+## _live
+
+Visit the online version at [https://yogurtcss.netlify.app/playground](https://yogurtcss.netlify.app/playground).
 
 ## _build
 
