@@ -399,9 +399,8 @@
           localStorage.dataBgLogoTheme = "invert-0 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
           ///
           localStorage.dataLogoTheme = "invert-0 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
-          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-600 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 rounded";
           localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
-          localStorage.dataDocButtonTheme = "flex justify-center items-center w-8 h-4 border border-gray-300";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-600 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 rounded";
           localStorage.dataButtonTheme = "opacity-50 text-gray-200 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
           localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 (focus)border-gray-500 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
           localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
