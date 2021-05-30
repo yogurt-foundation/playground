@@ -70,7 +70,7 @@
             <y class="animation roll-in-left duration-800">
               <a
                 v-bind:class="docButtonTheme"
-                href="/"
+                href="https://yogurtcss.netlify.app"
                 target="_blank"
                 rel="noopener"
                 title="Read the Documentation"
