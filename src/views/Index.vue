@@ -50,13 +50,14 @@
       <y
         v-bind:class="[
           isActive
-            ? 'z-50 breakpoint-540 menuBarTheme'
+            ? 'z-50 breakpoint-540 menuBarTheme bg-transparent'
             : 'hidden'
         ]"
       >
         <y class="p-1 flex justify-between items-center">
 
           <y class="flex justify-center items-center select-none">
+
             <!-- logo -->
             <y class="px-2 animation roll-in-left duration-800">
               <img
@@ -78,10 +79,23 @@
                 Docs
               </a>
             </y>
+
           </y>
 
           <!-- Switch -->
           <y class="px-2 flex flex-gap-3 justify-end items-center">
+
+            <!-- Reset -->
+            <y
+              class="flex justify-center items-center px-2 py-2 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none"
+              title="Reset Data (Ctrl+Alt+D)"
+              @click="resetData"
+            >
+              <img
+                v-bind:class="themeButton"
+                src="assets/image/reset.svg"
+                alt="Reset Data">
+            </y>
 
             <!-- Theme -->
             <y
@@ -105,9 +119,7 @@
                 v-bind:class="mainButtonIconTheme"
                 src="assets/image/preview.svg"
               />
-              <y
-                class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100"
-              >
+              <y class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100">
                 Preview
               </y>
             </y>
@@ -122,9 +134,7 @@
                 v-bind:class="mainButtonIconTheme"
                 src="assets/image/editor.svg"
               />
-              <y
-                class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100"
-              >
+              <y class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100">
                 Run
               </y>
             </y>
@@ -137,13 +147,13 @@
       <!-- status -->
       <y
         v-bind:class="preloaderTheme"
-        v-if="workingStatus">
-      </y>
+        v-if="workingStatus"
+      />
 
       <y
         v-bind:class="preloaderTheme"
-        v-if="resetStatus">
-      </y>
+        v-if="resetStatus"
+      />
 
       <y
         name="html"
@@ -156,7 +166,9 @@
           :theme="editorTheme"
           @onCodeChange="htmlOnCodeChange"
         />
+
       </y>
+
     </y>
 
     <!-- Resizable Window Bar -->
@@ -182,7 +194,7 @@
               ? 'w-1 h-full bg-black-700 (hover)bg-orange-600 (active)bg-orange-600 (focus)bg-orange-600 filter saturate-4 cursor-col-resize select-none transition duration-200 ease-in-out'
               : 'z-30 -mr-8 transform (hover)-translate-x-8 flex justify-center items-center w-10 h-screen bg-orange-500 (group-hover)bg-orange-600 (hover)shadow-dreamy-sm cursor-col-resize transition duration-200 ease-in-out shadow-dreamy-lg rounded-l-lg select-none',
           ]"
-        ></y>
+        />
 
       </y>
     </y>
@@ -202,8 +214,9 @@
             : 'z-20 flex-1 h-screen bg-white breakpoint-320 shadow-lg'
         ]"
         id="result"
-      ></y>
+      />
     </y>
+
   </y>
 </template>
 
@@ -365,6 +378,14 @@
         };
         document.addEventListener("keydown", this.shortcutKeys.bind(this));
       },
+      resetData: function() {
+        this.resetStatus = true;
+        setTimeout(() => {
+          localStorage.clear();
+          window.location.reload();
+          this.resetStatus = false;
+        }, 1000);
+      },
       forceRerender() {
         this.componentKey += 1
       },
@@ -382,7 +403,7 @@
           localStorage.dataBgLogoTheme = "invert-1 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
           ///
           localStorage.dataLogoTheme = "invert-1 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
-          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-500 (hover)text-gray-400 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded transition duration-300 ease-in-out";
           localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
           localStorage.dataButtonTheme = "invert-1 opacity-50 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
           localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
@@ -400,7 +421,7 @@
           ///
           localStorage.dataLogoTheme = "invert-0 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
           localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
-          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-600 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 rounded";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-600 (hover)text-gray-800 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 rounded transition duration-300 ease-in-out";
           localStorage.dataButtonTheme = "opacity-50 text-gray-200 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
           localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 (focus)border-gray-500 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
           localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
