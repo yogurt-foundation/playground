@@ -14,7 +14,7 @@
   let html = '<!-- \n\
   Welcome to Yogurt Playground!\n\n\
   Here you can testing or prototyping complex or simple UI online.\n\n\
-  Core Framework: v1.1.6-beta\n\
+  Core Framework: v1.1.6\n\
   Playground: v0.1.4-beta\n\n\
   (?) F1 for Command Palette\n\
   (?) Right-Click for more options\n\
