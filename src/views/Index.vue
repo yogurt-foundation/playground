@@ -210,8 +210,8 @@
       <y
         v-bind:class="[
           isActive
-            ? 'z-20 h-screen w-1/2 bg-white shadow-lg'
-            : 'z-20 flex-1 h-screen w-1/2 bg-white shadow-lg'
+            ? 'z-20 h-screen breakpoint-640 bg-white shadow-lg'
+            : 'z-20 flex-1 h-screen breakpoint-320 bg-white shadow-lg'
         ]"
         id="result"
       />
@@ -344,6 +344,7 @@
       },
       toggleModes: function () {
         this.isActive = !this.isActive;
+        this.forceRerender();
       },
       shortcutKeysEvents: function () {
         this.shortcutKeys = function (e) {
