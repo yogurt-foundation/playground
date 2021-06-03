@@ -210,8 +210,8 @@
       <y
         v-bind:class="[
           isActive
-            ? 'z-20 h-screen bg-white breakpoint-320 shadow-lg'
-            : 'z-20 flex-1 h-screen bg-white breakpoint-320 shadow-lg'
+            ? 'z-20 h-screen w-1/2 bg-white shadow-lg'
+            : 'z-20 flex-1 h-screen w-1/2 bg-white shadow-lg'
         ]"
         id="result"
       />
