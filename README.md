@@ -58,6 +58,12 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
 
 Visit the online version at [https://yogurtcss.netlify.app/playground](https://yogurtcss.netlify.app/playground).
 
+## _snap
+
+```bash
+$ sudo snap install yogurt-playground
+```
+
 ## _build
 
 ```bash
