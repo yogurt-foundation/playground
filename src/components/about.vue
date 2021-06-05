@@ -12,6 +12,42 @@
         v0.1.4-beta
       </y>
 
+      <y class="pb-6 w-full text-gray-600 text-center">
+        <y class="pb-2 text-lg text-gray-700 font-bold">
+          Shortcut Keys
+        </y>
+        <y class="pb-2 flex justify-between items-center">
+          <y class="text-xs font-semibold">
+            <span class="p-1 border border-gray-500 rounded">Ctrl</span> +
+            <span class="p-1 border border-gray-500 rounded">Alt</span> +
+            <span class="p-1 border border-gray-500 rounded">M</span>
+          </y>
+          <y class="mx-4 text-sm">
+            Switch between Editor or Preview mode
+          </y>
+        </y>
+        <y class="pb-2 flex justify-between items-center">
+          <y class="text-xs font-semibold">
+            <span class="p-1 border border-gray-500 rounded">Ctrl</span> +
+            <span class="p-1 border border-gray-500 rounded">Alt</span> +
+            <span class="p-1 border border-gray-500 rounded">/</span>
+          </y>
+          <y class="mx-4 text-sm">
+            Execute your codes
+          </y>
+        </y>
+        <y class="flex justify-between items-center">
+          <y class="text-xs font-semibold">
+            <span class="p-1 border border-gray-500 rounded">Ctrl</span> +
+            <span class="p-1 border border-gray-500 rounded">Alt</span> +
+            <span class="p-1 border border-gray-500 rounded">D</span>
+          </y>
+          <y class="mx-4 text-sm">
+            Reset stored data in the app
+          </y>
+        </y>
+      </y>
+
       <y class="pb-6 text-gray-700 text-center animation roll-in-left duration-800">
         <y class="pb-2 text-lg font-bold ">
           Official Documentation
@@ -225,6 +261,10 @@
           rel="noopener">
           Debug
         </a>
+      </y>
+
+      <y class="pt-10 text-gray-500 text-sm font-mono text-center">
+        Enjoy then!
       </y>
 
       <y class="absolute right-4 flex flex-gap-3 flex-col justify-center items-center animation fade-in duration-2000">
