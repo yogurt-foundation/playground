@@ -428,6 +428,7 @@
           localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
           ///
           localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-gray-100 bg-gray-300";
+          ///
           localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader light animation fade-in duration-300";
           window.location.reload();
         }
