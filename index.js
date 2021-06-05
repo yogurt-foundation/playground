@@ -1,44 +1,32 @@
 #!/usr/bin/env node
 
-const {
-  app,
-  BrowserWindow,
-  Menu,
-  Tray,
-  nativeTheme
-} = require('electron');
-
+const { app, BrowserWindow, Menu, nativeTheme } = require('electron');
 const express = require('express');
 const server = express();
 const path = require('path');
 
+// http
 const views = __dirname + '/app/';
-
 server.use(express.static(views));
-
 server.get('/', (req, res) => {
   res.sendFile(views + 'index.html');
 });
-
-// throw err
 server.use((err, req, res) => {
-  if (err) {
-    throw err;
-  }
+  if (err) { throw err; }
   res.sendFile(views + 'index.html');
 });
-
-// create random port
-const port = server.listen(0, () => {
+const port = server.listen(8809, () => { // create fixed port (0 is random)
   console.log('[playground] listening on port:', port.address().port);
 });
 
-// electron
-let win, createWindow, tray;
-
-nativeTheme.themeSource = 'light';
+let win, createWindow;
+let appHomeURL = 'http://0.0.0.0:' + port.address().port;
+let appAboutURL = 'http://0.0.0.0:' + port.address().port + '/#/about';
 
 createWindow = () => {
+
+  nativeTheme.themeSource = 'light'; // set default theme
+
   win = new BrowserWindow({
     title: 'Yogurt Playground',
     icon: path.join(__dirname, 'assets/favicon.png'),
@@ -48,6 +36,7 @@ createWindow = () => {
     frame: true,
     webgl: true,
     show: true,
+    devTools: true,
     webPreferences: {
       javascript: true,
       plugins: true,
@@ -56,23 +45,34 @@ createWindow = () => {
     },
   });
 
-  win.maximize();
-  win.loadURL('http://127.0.0.1:' + port.address().port);
-
-  // custom menu bar
   const template = [
     {
       label: 'Playground',
-      submenu: [{ role: 'minimize' }, { role: 'quit' }],
+      submenu: [
+        {
+          label: 'Editor',
+          accelerator: 'Ctrl+Alt+M',
+          click() {
+            win.loadURL(appHomeURL);
+          }
+        },
+        { type: 'separator' },
+        { role: 'minimize' },
+        { role: 'quit' }
+      ],
     },
     {
       label: 'View',
       submenu: [
+        { type: 'separator' },
         { role: 'reload' },
+        { type: 'separator' },
         { role: 'resetzoom' },
         { role: 'zoomin' },
         { role: 'zoomout' },
         { role: 'togglefullscreen' },
+        { type: 'separator' },
+        { role: 'toggledevtools' }
       ],
     },
     {
@@ -81,79 +81,35 @@ createWindow = () => {
         {
           label: 'About',
           click() {
-            require('electron').dialog.showMessageBox({
-              type: 'info',
-              buttons: ['Close'],
-              defaultId: 2,
-              title: 'About',
-              message: 'Yogurt Playground Desktop App (build v0.1.4-beta)',
-              detail:
-                'A developer playground IDE for testing and prototyping with Yogurt CSS framework.\n\n(https://github.com/yogurt-foundation/playground)',
-            });
-          },
+            win.loadURL(appAboutURL);
+          }
         },
-        {
-          label: 'Yogurt CSS Documentation',
-          click() {
-            require('electron').shell.openExternal(
-              'https://yogurtcss.netlify.app'
-            );
-          },
-        },
-      ],
-    },
+      ]
+    }
   ];
 
+  // menu bar
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 
-  // tray menu
-  win.on('minimize', (event) => {
-    event.preventDefault();
-    win.hide();
-  });
-  win.on('close', (event) => {
-    if (!app.isQuiting) {
-      event.preventDefault();
-      win.hide();
-    }
-    return false;
-  });
-  tray = new Tray('assets/favicon.png');
-  let contextMenu = Menu.buildFromTemplate([
-    {
-      label: 'Show App',
-      click: () => {
-        win.show();
-      },
-    },
-    {
-      label: 'Quit',
-      click: () => {
-        app.isQuiting = true;
-        app.quit();
-      },
-    },
-  ]);
-  tray.setToolTip('Yogurt Playground');
-  tray.setContextMenu(contextMenu);
+  // load app
+  win.maximize();
+  win.loadURL(appHomeURL);
 };
 
-app.on('ready', createWindow);
+// handlers
+app.whenReady().then(() => {
+  createWindow()
 
-// closed properly if requested by the OS or user
-app.on('before-quit', () => {
-  isQuiting = true;
-});
-// quit when all windows are closed
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
+  })
+})
+
 app.on('window-all-closed', () => {
-  if (app.listeners('window-all-closed').length === 1 && !option.interactive) {
-    app.quit();
+  if (process.platform !== 'darwin') {
+    app.quit()
   }
-});
-app.on('activate', () => {
-  // dock icon is clicked and there are no other windows open
-  if (win === null) {
-    createWindow();
-  }
-});
+})
