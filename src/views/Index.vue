@@ -54,7 +54,7 @@
             : 'hidden'
         ]"
       >
-        <y class="p-1 flex justify-between items-center">
+        <y class="p-2 flex justify-between items-center">
 
           <y class="flex justify-center items-center select-none">
 
