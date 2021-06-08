@@ -414,10 +414,10 @@
           localStorage.dataBgLogoTheme = "invert-1 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
           ///
           localStorage.dataLogoTheme = "invert-1 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
-          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-500 (hover)text-gray-400 bg-transparent (active)bg-gray-700 border border-gray-200 (hover)border-gray-500 (focus)border-gray-500 rounded transition duration-300 ease-in-out";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-500 (hover)text-gray-400 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-500 (focus)border-gray-500 rounded transition duration-300 ease-in-out";
           localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
           localStorage.dataButtonTheme = "invert-1 opacity-50 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
-          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-200 (hover)border-gray-500 (focus)border-gray-500 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-500 (focus)border-gray-500 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
           localStorage.dataMainButtonIconTheme = "invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-1 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
           ///
           localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-400";
