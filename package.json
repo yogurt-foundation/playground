@@ -4,7 +4,7 @@
   "description": "A developer playground IDE for testing and prototyping with Yogurt CSS framework.",
   "author": "Loouis Low (loouis@gmail.com)",
   "license": "MIT",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

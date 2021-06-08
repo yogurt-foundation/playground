@@ -9,10 +9,10 @@
         alt="Yogurt CSS">
 
       <y class="my-4 text-gray-600 text-md font-mono animation roll-in-left duration-800">
-        v0.1.4-beta
+        v0.1.5
       </y>
 
-      <y class="pb-6 w-full text-gray-600 text-center">
+      <y class="pb-6 w-full text-gray-600 text-center animation roll-in-left duration-800">
         <y class="pb-2 text-lg text-gray-700 font-bold">
           Shortcut Keys
         </y>
