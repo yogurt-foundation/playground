@@ -11,7 +11,7 @@
           v-bind:class="bgLogoTheme"
           src="assets/image/logo_full.svg"
           title="Yogurt"
-        />
+        >
       </y>
     </y>
 
@@ -28,7 +28,7 @@
       <img
         class="invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-6 h-6 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110"
         src="assets/image/editor.svg"
-      />
+      >
       <y
         class="ml-2 text-sm font-semibold text-gray-100 (group-hover)text-black-900 opacity-50 (group-hover)opacity-100"
       >
@@ -94,7 +94,8 @@
               <img
                 v-bind:class="themeButton"
                 src="assets/image/reset.svg"
-                alt="Reset Data">
+                alt="Reset Data"
+              >
             </y>
 
             <!-- Theme -->
@@ -106,7 +107,8 @@
               <img
                 v-bind:class="themeButton"
                 src="assets/image/dark-light-mode.svg"
-                alt="Dark/Light Mode">
+                alt="Dark/Light Mode"
+              >
             </y>
 
             <!-- Preview -->
@@ -118,7 +120,7 @@
               <img
                 v-bind:class="mainButtonIconTheme"
                 src="assets/image/preview.svg"
-              />
+              >
               <y class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100">
                 Preview
               </y>
@@ -133,7 +135,7 @@
               <img
                 v-bind:class="mainButtonIconTheme"
                 src="assets/image/editor.svg"
-              />
+              >
               <y class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100">
                 Run
               </y>
@@ -235,37 +237,45 @@
         htmlCodes:
           '<!-- \n\
   Welcome to Yogurt Playground!\n\n\
-  Here you can testing or prototyping complex or simple UI online.\n\n\
-  Core Framework: v1.1.6\n\
-  Playground: v0.1.4-beta\n\n\
+  A developer tool for you to testing or prototyping complex or simple .\n\n\
+  The tool is also available for SnapCraft and AppImage (Linux/Win/Mac),\n\
+  desktop apps, you can find the information on the Github repository page.\n\n\
+  (!) In the example below, the ".." is to separate in between different\n\
+  utilities for easy to read for a beginner. You don\'t need ".." in writing\n\
+  Yogurt CSS.\n\n\
   (?) F1 for Command Palette\n\
   (?) Right-Click for more options\n\
   (?) Ctrl+Alt+M to switch windows\n\
   (?) Ctrl+Alt+/ to run code\n\
   (?) Ctrl+Alt+D to reset auto-saved data\n\
---> \n\n\
-  <body class="font-default antialiased text-gray-600 (dark)text-gray-300 bg-gray-100 (dark)bg-gray-800">\n\n\
-    <y class="h-screen (xs)px-4 flex flex-col justify-center items-center">\n\
-      <y class="pb-10 text-2xl animation fade-in-up delay-2">\n\
-        Welcome to\n\
-        <span class="inline-block font-semibold underline">\n\
-          Yogurt CSS\n\
-        </span>\n\
-        playground\n\
-      </y>\n\
-      <y class="(xs)max-w-full (sm)max-w-xs p-10 flex (xs)flex-col (sm)flex-row justify-around items-center bg-white (dark)bg-charcoal-900 rounded-lg shadow-dreamy w-full animation fade-in-up overflow-hidden">\n\
-        <y class="h-20 w-20 bg-gray-600 rounded-full"></y>\n\
-        <y class="(xs)pt-4 (sm)pt-0 (xs)text-2xl (sm)text-xl text-gray-600">\n\
-          Hello World!\n\
+--> \n\
+  <body class="h-screen .. font-default .. flex justify-center items-center">\n\
+    <y class="z-10 .. absolute top-0 left-0 .. w-full">\n\
+      <y class="h-screen .. pattern ripple-lg text-white bg-gray-300"></y>\n\
+    </y>\n\
+    <y class="(xs)p-0 (sm)p-10 .. flex flex-col justify-center items-center">\n\
+      <y class="z-50 .. animation fade-in-up duration-800 delay-2">\n\
+        <y class="pb-6 .. text-gray-600 text-center .. fluid text-min-xl text-max-3xl .. highlight fore-gray-100 rear-teal-400">\n\
+          Welcome to Yogurt Playground\n\
         </y>\n\
       </y>\n\
-      <y class="py-10 text-lg animation fade-in-down delay-2">\n\
-        Start craft something new\n\
-        <span class="inline-block underline">\n\
-          today!\n\
-        </span>\n\
+      <y class="z-50 .. px-16 py-10 .. (xs)max-w-full .. flex justify-center items-center .. bg-transparent .. rounded-lg .. shadow-dreamy-lg .. backdrop-filter blur-2 .. animation fade-in duration-4000">\n\
+        <y class="flex (xs)flex-col (sm)flex-row justify-center items-center">\n\
+          <y class="h-24 w-24 .. bg-gray-500 .. rounded-full .. shadow-dreamy-lg"></y>\n\
+          <y class="(xs)pt-4 (sm)p-4 .. text-gray-500 .. fluid text-min-3xl text-max-5xl text-center font-thin .. highlight fore-gray-100 rear-amber-400">\n\
+            Hello World!\n\
+          </y>\n\
+        </y>\n\
       </y>\n\
-    </y>\n\n\
+      <y class="z-50 .. (lg)max-w-xl .. animation fade-in-down duration-800 delay-2">\n\
+        <y class="text-gray-500 font-thin text-center .. fluid p-min-2 p-max-6 text-min-xl text-max-5xl .. depth-tight .. highlight fore-gray-100 rear-pink-400">\n\
+          Start craft something beautiful\n\
+          <span class="underline .. highlight fore-gray-800 rear-gray-400">\n\
+            today!\n\
+          </span>\n\
+        </y>\n\
+      </y>\n\
+    </y>\n\
   </body>',
         jsCodes: "",
         cssCodes:
@@ -404,10 +414,10 @@
           localStorage.dataBgLogoTheme = "invert-1 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
           ///
           localStorage.dataLogoTheme = "invert-1 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
-          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-500 (hover)text-gray-400 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded transition duration-300 ease-in-out";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-500 (hover)text-gray-400 bg-transparent (active)bg-gray-700 border border-gray-200 (hover)border-gray-500 (focus)border-gray-500 rounded transition duration-300 ease-in-out";
           localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
           localStorage.dataButtonTheme = "invert-1 opacity-50 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
-          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-600 (focus)border-gray-600 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-200 (hover)border-gray-500 (focus)border-gray-500 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
           localStorage.dataMainButtonIconTheme = "invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-1 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
           ///
           localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-400";
@@ -427,7 +437,7 @@
           localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 (focus)border-gray-500 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
           localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
           ///
-          localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-gray-100 bg-gray-300";
+          localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-white bg-gray-300";
           ///
           localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader light animation fade-in duration-300";
           window.location.reload();
