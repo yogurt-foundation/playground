@@ -28,28 +28,18 @@
 
 A developer playground for testing and prototyping with Yogurt CSS framework and other micro libraries.
 
-> Version 0.1.4-beta
+> Version 0.1.5
+
+### Shortcut Keys
+
+- `F1` for Command Palette.
+- `Right-Click` for more options.
+- `Ctrl+Alt+M` to switch windows.
+- `Ctrl+Alt+/` to run code.
+- `Ctrl+Alt+D` to reset auto-saved data.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_01.png"
-       height="auto"
-       width="auto">
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_02.png"
-       height="auto"
-       width="auto">
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_03.png"
-       height="auto"
-       width="auto">
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.4/assets/screenshot_04.png"
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.5/assets/screenshot_05.png"
        height="auto"
        width="auto">
 </p>
@@ -59,6 +49,8 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
 Visit the online version at [https://yogurtcss.netlify.app/playground](https://yogurtcss.netlify.app/playground).
 
 ## _snap
+
+Also available for SnapCraft (Linux) and AppImage (Linux/Win/Mac) desktop apps.
 
 ```bash
 $ sudo snap install yogurt-playground

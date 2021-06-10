@@ -4,7 +4,7 @@
   "description": "A developer playground IDE for testing and prototyping with Yogurt CSS framework.",
   "author": "Loouis Low (loouis@gmail.com)",
   "license": "MIT",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,7 +13,8 @@
     "build:native:all": "npm run build:app && electron-builder -lwm",
     "build:native:linux": "npm run build:app && electron-builder -l",
     "build:native:windows": "npm run build:app && electron-builder -w",
-    "build:native:mac": "npm run build:app && electron-builder -m"
+    "build:native:mac": "npm run build:app && electron-builder -m",
+    "clean": "rm -rfv ./dist ./app"
   },
   "dependencies": {
     "core-js": "^2.6.5",

@@ -22,7 +22,7 @@
       language: {
         type: String,
         default: function () {
-          return "html";
+          return "'html'";
         },
       },
       theme: {

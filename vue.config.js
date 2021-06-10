@@ -1,8 +1,6 @@
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
 const resolve = (dir) => path.resolve(__dirname, dir);
 

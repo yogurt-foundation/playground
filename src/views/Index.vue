@@ -2,20 +2,16 @@
   <y v-bind:class="bgCoverTheme">
 
     <!-- Logo -->
-    <y
-      class="z-10 absolute top-0 left-0 flex justify-start items-center h-screen w-full"
+    <y class="z-10 absolute top-12 left-12 flex justify-start items-start h-screen w-full"
     >
-      <y
-        class="ml-24">
-        <img
-          v-bind:class="bgLogoTheme"
-          src="assets/image/logo_full.svg"
-          title="Yogurt"
-        >
-      </y>
+      <img
+        v-bind:class="bgLogoTheme"
+        src="assets/image/logo_full.svg"
+        alt="Yogurt"
+      >
     </y>
 
-    <!-- back to Editor from Previwer -->
+    <!-- back to Editor from Previewer -->
     <y
       v-bind:class="[
         isActive
@@ -50,7 +46,7 @@
       <y
         v-bind:class="[
           isActive
-            ? 'z-50 breakpoint-540 menuBarTheme bg-transparent'
+            ? 'breakpoint-480 menuBarTheme'
             : 'hidden'
         ]"
       >
@@ -82,65 +78,26 @@
 
           </y>
 
-          <!-- Switch -->
-          <y class="px-2 flex flex-gap-3 justify-end items-center">
-
-            <!-- Reset -->
+          <!-- Main Buttons -->
+          <y class="px-2 flex flex-gap-2 justify-end items-center">
             <y
-              class="flex justify-center items-center px-2 py-2 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none"
-              title="Reset Data (Ctrl+Alt+D)"
-              @click="resetData"
+              v-for='item in mainButtons'
+              :key='item.title'
             >
-              <img
-                v-bind:class="themeButton"
-                src="assets/image/reset.svg"
-                alt="Reset Data"
-              >
-            </y>
 
-            <!-- Theme -->
-            <y
-              class="flex justify-center items-center px-2 py-2 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none"
-              title="Dark or Light Theme"
-              @click="changeEditorTheme"
-            >
-              <img
-                v-bind:class="themeButton"
-                src="assets/image/dark-light-mode.svg"
-                alt="Dark/Light Mode"
+              <y
+                v-bind:class="mainButtonTheme"
+                :title='item.tooltip'
+                @click='item.action'
               >
-            </y>
-
-            <!-- Preview -->
-            <y
-              v-bind:class="mainButtonTheme"
-              title="Preview (Ctrl+Alt+M)"
-              @click="toggleModes()"
-            >
-              <img
-                v-bind:class="mainButtonIconTheme"
-                src="assets/image/preview.svg"
-              >
-              <y class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100">
-                Preview
+                <img
+                  v-bind:class="mainButtonIconTheme"
+                  :src='item.icon'
+                  :alt='item.title'
+                >
               </y>
-            </y>
 
-            <!-- Run -->
-            <y
-              v-bind:class="mainButtonTheme"
-              title="Run Code (F2 or Ctrl+Alt+/)"
-              @click="renderCode"
-            >
-              <img
-                v-bind:class="mainButtonIconTheme"
-                src="assets/image/editor.svg"
-              >
-              <y class="ml-2 text-sm font-semibold opacity-50 (group-hover)opacity-100">
-                Run
-              </y>
             </y>
-
           </y>
 
         </y>
@@ -181,7 +138,7 @@
           : 'z-20 w-auto h-full'
       ]"
       title="Resize Window"
-      id="resizableWindowBar"
+      id="windowResize"
     >
       <y
         v-bind:class="[
@@ -225,7 +182,7 @@
 
 <script>
   import MyEditor from "../components/editor";
-  import { windowsResizableDragbar } from "../modules/window-resizeable-dragbar";
+  import { windowResizer } from "../modules/windowResizer";
 
   export default {
     components: {
@@ -233,11 +190,10 @@
     },
     data() {
       return {
-        activeName: "html",
         htmlCodes:
           '<!-- \n\
   Welcome to Yogurt Playground!\n\n\
-  A developer tool for you to testing or prototyping complex or simple .\n\n\
+  A developer tool for you to testing or prototyping design.\n\n\
   The tool is also available for SnapCraft and AppImage (Linux/Win/Mac),\n\
   desktop apps, you can find the information on the Github repository page.\n\n\
   (!) In the example below, the ".." is to separate in between different\n\
@@ -251,24 +207,24 @@
 --> \n\
   <body class="h-screen .. font-default .. flex justify-center items-center">\n\
     <y class="z-10 .. absolute top-0 left-0 .. w-full">\n\
-      <y class="h-screen .. pattern ripple-lg text-white bg-gray-300"></y>\n\
+      <y class="h-screen .. pattern ripple-lg text-white (dark)text-charcoal-100 bg-gray-300 (dark)bg-black-800"></y>\n\
     </y>\n\
     <y class="(xs)p-0 (sm)p-10 .. flex flex-col justify-center items-center">\n\
       <y class="z-50 .. animation fade-in-up duration-800 delay-2">\n\
-        <y class="pb-6 .. text-gray-600 text-center .. fluid text-min-xl text-max-3xl .. highlight fore-gray-100 rear-teal-400">\n\
+        <y class="pb-6 .. text-gray-600 (dark)text-gray-500 text-center .. fluid text-min-xl text-max-3xl .. highlight fore-gray-100 rear-teal-400">\n\
           Welcome to Yogurt Playground\n\
         </y>\n\
       </y>\n\
-      <y class="z-50 .. px-16 py-10 .. (xs)max-w-full .. flex justify-center items-center .. bg-transparent .. rounded-lg .. shadow-dreamy-lg .. backdrop-filter blur-2 .. animation fade-in duration-4000">\n\
+      <y class="z-50 .. px-16 py-10 .. (xs)max-w-full .. flex justify-center items-center .. bg-transparent (dark)bg-gray-700 .. rounded-lg .. shadow-lg .. backdrop-filter blur-2 .. animation fade-in duration-4000">\n\
         <y class="flex (xs)flex-col (sm)flex-row justify-center items-center">\n\
-          <y class="h-24 w-24 .. bg-gray-500 .. rounded-full .. shadow-dreamy-lg"></y>\n\
-          <y class="(xs)pt-4 (sm)p-4 .. text-gray-500 .. fluid text-min-3xl text-max-5xl text-center font-thin .. highlight fore-gray-100 rear-amber-400">\n\
+          <y class="h-24 w-24 .. bg-gray-500 (dark)bg-orange-600 .. rounded-full .. shadow-dreamy-lg"></y>\n\
+          <y class="(xs)pt-4 (sm)p-4 .. text-gray-500 (dark)text-gray-600 .. fluid text-min-3xl text-max-5xl text-center font-thin .. highlight fore-gray-100 rear-amber-400">\n\
             Hello World!\n\
           </y>\n\
         </y>\n\
       </y>\n\
       <y class="z-50 .. (lg)max-w-xl .. animation fade-in-down duration-800 delay-2">\n\
-        <y class="text-gray-500 font-thin text-center .. fluid p-min-2 p-max-6 text-min-xl text-max-5xl .. depth-tight .. highlight fore-gray-100 rear-pink-400">\n\
+        <y class="text-gray-500 (dark)text-gray-600 font-thin text-center .. fluid p-min-2 p-max-6 text-min-xl text-max-5xl .. depth-tight .. highlight fore-gray-100 rear-pink-400">\n\
           Start craft something beautiful\n\
           <span class="underline .. highlight fore-gray-800 rear-gray-400">\n\
             today!\n\
@@ -279,26 +235,46 @@
   </body>',
         jsCodes: "",
         cssCodes:
-          "@import 'assets/css/yogurt-1.1.6_solidcore.min.css';[debug=screen]{font-size:13px;color:#000;background-color:#d3d3d3;opacity:.3;border-radius:3px;margin:4px;font-weight:700}@media (min-width:320px){[debug=screen]::after{content:'(xs) 320px'}}@media (min-width:480px){[debug=screen]::after{content:'(sm) 480px'}}@media (min-width:640px){[debug=screen]::after{content:'(sm) 640px'}}@media (min-width:768px){[debug=screen]::after{content:'(md) 768px'}}@media (min-width:1024px){[debug=screen]::after{content:'(lg) 1024px'}}@media (min-width:1280px){[debug=screen]::after{content:'(xl) 1280px'}}@media (min-width:1920px){[debug=screen]::after{content:'(2xl) 1920px'}}@media (min-width:2560px){[debug=screen]::after{content:'(3k) 2560px'}}@media (min-width:3840px){[debug=screen]::after{content:'(4k) 3840px'}}@media (min-width:5120px){[debug=screen]::after{content:'(5k) 5120px'}}@media (min-width:5760px){[debug=screen]::after{content:'(6k) 5760px'}}@media (min-width:7000px){[debug=screen]::after{content:'(7k) 7000px'}}@media (min-width:7680px){[debug=screen]::after{content:'(8k) 7680px'}}",
-        ///
+          "@import 'assets/css/yogurt-1.1.6_solidcore.min.css';[debug=screen]{font-size:13px;color:#000;background-color:#d3d3d3;opacity:.3;border-radius:3px;margin:4px;font-weight:700}@media(prefers-color-scheme:dark){color:#d3d3d3;background:#000;}@media (min-width:320px){[debug=screen]::after{content:'(xs) 320px'}}@media (min-width:480px){[debug=screen]::after{content:'(sm) 480px'}}@media (min-width:640px){[debug=screen]::after{content:'(sm) 640px'}}@media (min-width:768px){[debug=screen]::after{content:'(md) 768px'}}@media (min-width:1024px){[debug=screen]::after{content:'(lg) 1024px'}}@media (min-width:1280px){[debug=screen]::after{content:'(xl) 1280px'}}@media (min-width:1920px){[debug=screen]::after{content:'(2xl) 1920px'}}@media (min-width:2560px){[debug=screen]::after{content:'(3k) 2560px'}}@media (min-width:3840px){[debug=screen]::after{content:'(4k) 3840px'}}@media (min-width:5120px){[debug=screen]::after{content:'(5k) 5120px'}}@media (min-width:5760px){[debug=screen]::after{content:'(6k) 5760px'}}@media (min-width:7000px){[debug=screen]::after{content:'(7k) 7000px'}}@media (min-width:7680px){[debug=screen]::after{content:'(8k) 7680px'}}",
+        mainButtons: [
+          {
+            title: 'Reset',
+            icon: 'assets/image/reset.svg',
+            tooltip: 'Reset auto-saved data',
+            action: this.resetData
+          },
+          {
+            title: 'Dark/Light Mode',
+            icon: 'assets/image/dark-light-mode.svg',
+            tooltip: 'Dark/Light Mode',
+            action: this.changeEditorTheme
+          },
+          {
+            title: 'Preview',
+            icon: 'assets/image/preview.svg',
+            tooltip: 'Full Screen Preview (Ctrl+Alt+M)',
+            action: this.toggleModes
+          },
+          {
+            title: 'Run',
+            icon: 'assets/image/editor.svg',
+            tooltip: 'Run (Ctrl+Alt+/ or F2)',
+            action: this.renderCode
+          }
+        ],
+        activeName: "html",
         htmlEditor: null,
-        jsEditor: null,
         cssEditor: null,
-        ///
+        jsEditor: null,
         componentKey: 0,
-        ///
         isActive: true,
-        ///
+        workingStatus: false,
+        resetStatus: false,
         loadHtmlCodes: localStorage.dataHTML,
         loadCssCodes: localStorage.dataCSS,
         loadJsCodes: localStorage.dataJS,
-        ///
-        workingStatus: false,
-        resetStatus: false,
-        ///
         editorTheme: localStorage.dataTheme,
         bgCoverTheme: localStorage.dataBgTheme,
-        ///
         menubarTheme: localStorage.dataMenuBarTheme,
         docButtonTheme: localStorage.dataDocButtonTheme,
         themeButton: localStorage.dataButtonTheme,
@@ -306,7 +282,6 @@
         mainButtonTheme: localStorage.dataMainButtonTheme,
         logoTheme: localStorage.dataLogoTheme,
         bgLogoTheme: localStorage.dataBgLogoTheme,
-        ///
         preloaderTheme: localStorage.dataPreloaderTheme,
       };
     },
@@ -314,7 +289,7 @@
       this.shortcutKeysEvents();
       this.renderCode();
 
-      windowsResizableDragbar();
+      windowResizer();
     },
     beforeDestroy() {
       document.removeEventListener("keydown", this.shortcutKeys);
@@ -368,7 +343,7 @@
             e.preventDefault();
             this.toggleModes();
           }
-          // `ctrl+alt+t` to load template data
+          // `ctrl+alt+p` to load template data
           if (e.key === "p" && (e.altKey || e.metaKey)) {
             e.preventDefault();
             localStorage.dataHTML = this.htmlCodes;
@@ -402,44 +377,34 @@
       },
       renderCode: function() {
         this.runCode();
-        setTimeout(() => {
-           this.workingStatus = false;
-        }, 2000);
+        setTimeout(() => { this.workingStatus = false; }, 2000);
       },
       changeEditorTheme: function() {
         if (localStorage.dataTheme === "vs") { // light
-          ///
           localStorage.dataTheme = "vs-dark";
-          ///
-          localStorage.dataBgLogoTheme = "invert-1 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
-          ///
+          localStorage.dataBgLogoTheme = "invert-1 h-auto w-32 object-cover object-center overflow-hidden opacity-75 select-none";
           localStorage.dataLogoTheme = "invert-1 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
-          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-500 (hover)text-gray-400 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-500 (focus)border-gray-500 rounded transition duration-300 ease-in-out";
-          localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
+          localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-500 (hover)text-gray-400 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-600 (focus)border-gray-500 rounded transition duration-300 ease-in-out";
+          localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full bg-charcoal-100";
           localStorage.dataButtonTheme = "invert-1 opacity-50 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
-          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 border border-gray-700 (hover)border-gray-500 (focus)border-gray-500 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
-          localStorage.dataMainButtonIconTheme = "invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-1 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
-          ///
+          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-400 (hover)text-gray-300 bg-transparent (active)bg-gray-700 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+          localStorage.dataMainButtonIconTheme = "invert-1 opacity-50 (group-hover)opacity-75 (group-hover)invert-1 w-6 h-6 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-125";
           localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-charcoal-100 bg-charcoal-400";
-          ///
           localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader dark animation fade-in duration-300";
+          // TODO: if `light`, then reload is `dark`
           window.location.reload();
         } else if (localStorage.dataTheme === "vs-dark") { // dark
-          ///
           localStorage.dataTheme = "vs";
-          ///
-          localStorage.dataBgLogoTheme = "invert-0 h-auto w-64 object-cover object-center overflow-hidden opacity-75 select-none";
-          ///
+          localStorage.dataBgLogoTheme = "invert-0 h-auto w-32 object-cover object-center overflow-hidden opacity-75 select-none";
           localStorage.dataLogoTheme = "invert-0 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
-          localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full";
+          localStorage.dataMenuBarTheme = "p-1 absolute bottom-0 left-0 h-20 w-full bg-white";
           localStorage.dataDocButtonTheme = "flex justify-center items-center px-2 h-6 text-sm text-gray-600 (hover)text-gray-800 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 rounded transition duration-300 ease-in-out";
           localStorage.dataButtonTheme = "opacity-50 text-gray-200 transform (hover)scale-125 w-5 h-5 transition duration-300 ease-in-out transform (group-hover)scale-125";
-          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-black-900 (group-hover)text-black-900 bg-gray-100 (active)bg-gray-300 border border-gray-300 (hover)border-gray-500 (focus)border-gray-500 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
-          localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-5 h-5 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-110";
-          ///
-          localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-white bg-gray-300";
-          ///
-          localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader light animation fade-in duration-300";
+          localStorage.dataMainButtonTheme = "(group) flex justify-center items-center px-2 py-1 text-gray-700 (group-hover)text-gray-800 bg-transparent (active)bg-gray-300 filter saturate-4 rounded transition duration-300 ease-in-out animation roll-in-left duration-800 cursor-pointer select-none";
+          localStorage.dataMainButtonIconTheme = "invert-0 opacity-50 (group-hover)opacity-75 (group-hover)invert-0 w-6 h-6 object-fit object-center transition duration-300 ease-in-out transform (group-hover)scale-125";
+          localStorage.dataBgTheme = "relative flex flex-row pattern ripple-lg text-white bg-gray-200";
+          localStorage.dataPreloaderTheme = "z-50 absolute top-16 right-6 w-5 h-5 preloader dark animation fade-in duration-300";
+          // TODO: if `dark`, then reload is `light`
           window.location.reload();
         }
       }
@@ -455,33 +420,8 @@
   .breakpoint-480 {
     min-width: 480px;
   }
-  .breakpoint-540 {
-    min-width: 540px;
-  }
   .breakpoint-640 {
     min-width: 640px;
-  }
-  .breakpoint-768 {
-    min-width: 768px;
-  }
-  .breakpoint-1024 {
-    min-width: 1024px;
-  }
-  .breakpoint-1280 {
-    min-width: 1280px;
-  }
-  .breakpoint-1920 {
-    min-width: 1920px;
-  }
-  .breakpoint-3840 {
-    min-width: 3840px;
-  }
-  .breakpoint-7680 {
-    min-width: 7680px;
-  }
-  .breakpoint-x {
-    min-width: 320px;
-    max-width: 100%;
   }
   .preloader {
     --preloader-theme: transparent;
