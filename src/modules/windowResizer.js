@@ -1,36 +1,34 @@
-export function windowsResizableDragbar() {
-  // Query the element
-  const resizer = document.getElementById('resizableWindowBar');
+export function windowResizer() {
+  // query the element
+  const resizer = document.getElementById('windowResize');
   const leftSide = resizer.previousElementSibling;
   const rightSide = resizer.nextElementSibling;
 
-  // The current position of mouse
+  // current position of mouse
   let x = 0;
-  let y = 0;
 
   // Width of left side
   let leftWidth = 0;
 
-  // Handle the mousedown event
+  // handle the mousedown event
   // that's triggered when user drags the resizer
   const mouseDownHandler = function (e) {
-    // Get the current mouse position
+    // get the current mouse position
     x = e.clientX;
-    y = e.clientY;
+
     leftWidth = leftSide.getBoundingClientRect().width;
 
-    // Attach the listeners to `document`
+    // attach the listeners to `document`
     document.addEventListener('mousemove', mouseMoveHandler);
     document.addEventListener('mouseup', mouseUpHandler);
   };
 
-  // Attach the handler
+  // attach the handler
   resizer.addEventListener('mousedown', mouseDownHandler);
 
   const mouseMoveHandler = function (e) {
-    // How far the mouse has been moved
+    // how far the mouse has been moved
     const dx = e.clientX - x;
-    const dy = e.clientY - y;
 
     const newLeftWidth =
       ((leftWidth + dx) * 100) /
@@ -56,9 +54,11 @@ export function windowsResizableDragbar() {
     rightSide.style.removeProperty('user-select');
     rightSide.style.removeProperty('pointer-events');
 
-    // Remove the handlers of `mousemove` and `mouseup`
+    // remove the handlers of `mousemove` and `mouseup`
     document.removeEventListener('mousemove', mouseMoveHandler);
     document.removeEventListener('mouseup', mouseUpHandler);
+
+    // update Monaco Editor
     document.initEditor();
   };
 }
