@@ -39,7 +39,7 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
 - `Ctrl+Alt+D` to reset auto-saved data.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.5/assets/ddfb3c5ba273ab092534cfed.png"
+  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.5/assets/screenshot_05.png"
        height="auto"
        width="auto">
 </p>
