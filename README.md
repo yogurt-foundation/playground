@@ -1,5 +1,4 @@
-# playground
-
+<p>
   <a href="https://discord.gg/A62YjNR"
      target="_blank">
     <img title="Join the chat at https://discord.gg/A62YjNR"
@@ -21,7 +20,7 @@
 
 <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.5/assets/yogurt_playground_promo.jpg">
 
-A developer playground for testing and prototyping with Yogurt CSS framework and other micro libraries.
+### A developer playground for testing and prototyping with Yogurt CSS framework and other micro libraries.
 
 > Version 0.1.5
 
@@ -33,11 +32,7 @@ A developer playground for testing and prototyping with Yogurt CSS framework and
 - `Ctrl+Alt+/` to run code.
 - `Ctrl+Alt+D` to reset auto-saved data.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.5/assets/screenshot_05.png"
-       height="auto"
-       width="auto">
-</p>
+<img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.5/assets/screenshot_05.png">
 
 ## _live
 
