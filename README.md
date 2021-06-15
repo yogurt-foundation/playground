@@ -32,7 +32,7 @@
 - `Ctrl+Alt+/` to run code.
 - `Ctrl+Alt+D` to reset auto-saved data.
 
-<img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.5/assets/screenshot_05.png">
+<img src="https://raw.githubusercontent.com/yogurt-foundation/playground/0.1.5/assets/screenshot_06.png">
 
 ## _live
 
