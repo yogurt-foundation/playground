@@ -32,20 +32,39 @@
   </y>\n\
   <y class="(xs)p-0 (sm)p-10 .. flex flex-col justify-center items-center">\n\
     <y class="z-50 .. animation fade-in-up duration-800 delay-2">\n\
-      <y class="pb-6 .. text-gray-600 (dark)text-gray-500 text-center .. fluid text-min-xl text-max-3xl .. highlight fore-gray-100 rear-teal-400">\n\
+      <y class="pb-6 .. text-gray-700 (dark)text-gray-500 text-center .. fluid text-min-xl text-max-3xl .. highlight fore-gray-100 rear-teal-400">\n\
         Welcome to Yogurt Playground\n\
       </y>\n\
     </y>\n\
-    <y class="z-50 .. px-16 py-10 .. (xs)max-w-full .. flex justify-center items-center .. bg-transparent (dark)bg-gray-700 .. rounded-lg .. shadow-lg .. backdrop-filter blur-2 .. animation fade-in duration-4000">\n\
+    <y class="z-50 .. relative .. (group) .. px-16 py-10 .. (xs)max-w-full .. flex justify-center items-center .. bg-transparent (dark)bg-gray-700 .. rounded-lg .. shadow-dreamy-md (hover)shadow-lg .. backdrop-filter blur-2 .. animation fade-in duration-4000 .. transform rotate-x-18 (hover)rotate-x-0 -rotate-y-18 (hover)rotate-y-0 rotate-z-9 (hover)rotate-z-0 .. transition duration-700 linear .. overflow-hidden .. cursor-pointer">\n\
+      <y class="absolute -top-2 -left-2 .. overflow-hidden">\n\
+        <y class="h-48 w-48 .. pattern diagonal-stripes-sm text-gray-200 .. rounded-full"></y>\n\
+      </y>\n\
       <y class="flex (xs)flex-col (sm)flex-row justify-center items-center">\n\
-        <y class="h-24 w-24 .. bg-gray-500 (dark)bg-orange-600 .. rounded-full .. shadow-dreamy-lg"></y>\n\
-        <y class="(xs)pt-4 (sm)p-4 .. text-gray-500 (dark)text-gray-600 .. fluid text-min-3xl text-max-5xl text-center font-thin .. highlight fore-gray-100 rear-amber-400">\n\
-          Hello World!\n\
+        <y class="relative .. h-24 w-24 .. bg-gray-700 (group-hover)bg-transparent (dark)bg-orange-600 .. rounded-full .. shadow-dreamy-lg .. transition duration-500 linear">\n\
+          <y class="absolute top-0 -left-4">\n\
+            <img class="(group-hover)h-32 h-24 (group-hover)w-32 w-24 .. object-cover object-center .. bg-gray-300 .. rounded-full .. shadow-dreamy-sm .. filter saturate-4 contrast-4 brightness-4 .. animation fade-in-left duration-800 delay-2 .. select-none" src="https://picsum.photos/200?=1">\n\
+          </y>\n\
+          <y class="absolute top-0 right-5 .. h-6 w-6 .. bg-green-400 .. rounded-full .. filter saturate-5"></y>\n\
         </y>\n\
+        <y class="z-10 .. (xs)pt-4 (sm)p-4 .. text-gray-600 (dark)text-gray-600 .. fluid text-min-3xl text-max-5xl text-center font-thin .. transform (group-hover)-translate-y-2 .. transition duration-500 linear .. highlight fore-gray-100 rear-amber-400">\n\
+          Hello World!\n\
+          <y class="text-gray-600 .. text-md .. text-optimize-precision .. uppercase">\n\
+            <y class="(group-hover)hidden .. transition duration-500 ease-in-out">\n\
+              Hover Me For Treasure\n\
+            </y>\n\
+            <y class="hidden (group-hover)block .. font-semibold .. transition duration-500 ease-in-out">\n\
+              Secret Discovered!\n\
+            </y>\n\
+          </y>\n\
+        </y>\n\
+      </y>\n\
+      <y class="absolute bottom-2 right-2">\n\
+        <img class="h-5 w-5 opacity-25 (group-hover)opacity-75 .. select-none" src="assets/image/logo_small.svg">\n\
       </y>\n\
     </y>\n\
     <y class="z-50 .. (lg)max-w-xl .. animation fade-in-down duration-800 delay-2">\n\
-      <y class="text-gray-500 (dark)text-gray-600 font-thin text-center .. fluid p-min-2 p-max-6 text-min-xl text-max-5xl .. depth-tight .. highlight fore-gray-100 rear-pink-400">\n\
+      <y class="text-gray-700 (dark)text-gray-600 font-thin text-center .. fluid p-min-2 p-max-6 text-min-xl text-max-5xl .. depth-tight .. highlight fore-gray-100 rear-pink-400">\n\
         Start craft something beautiful\n\
         <span class="underline .. highlight fore-gray-800 rear-gray-400">\n\
           today!\n\
@@ -103,7 +122,7 @@
     // main logo theme is set
   } else {
     localStorage.dataLogoThemeEnabled = "true";
-    localStorage.dataLogoTheme = "invert-0 opacity-75 h-8 w-auto object-fit object-center overflow-hidden";
+    localStorage.dataLogoTheme = "invert-0 opacity-75 h-8 w-auto fill-current text-gray-700 object-fit object-center overflow-hidden";
   }
 
   if (localStorage.dataBgLogoThemeEnabled === "true") {
